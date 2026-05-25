@@ -148,6 +148,6 @@ Esta ontologia visa organizar e integrar informações dispersas sobre esses eve
 ## 👤 Autoria
 
 **Disciplina:** Inteligência Artificial  
-**Professor:** Luis Alvaro  
+**Aluno:** Raul Hohgraefe da Cruz  
 **Instituição:** Universidade Federal de Santa Maria — UFSM  
 **Ano:** 2026
