@@ -258,7 +258,7 @@ with onto:
 # SALVAR O ARQUIVO OWL
 # =========================================================
 
-onto.save(file="/home/claude/taim.owl", format="rdfxml")
+onto.save(file="taim.owl", format="rdfxml")
 print("✅ Ontologia salva em taim.owl")
 
 # Resumo do que foi criado

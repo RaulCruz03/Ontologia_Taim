@@ -1,0 +1,1648 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+         xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+         xmlns:owl="http://www.w3.org/2002/07/owl#"
+         xml:base="http://www.exemplo.org/taim"
+         xmlns="http://www.exemplo.org/taim#">
+
+<owl:Ontology rdf:about="http://www.exemplo.org/taim"/>
+
+<owl:ObjectProperty rdf:about="#envolveAnimal">
+  <rdfs:domain rdf:resource="#EventoAtropelamento"/>
+  <rdfs:range rdf:resource="#Animal"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#ocorreEm">
+  <rdfs:domain rdf:resource="#EventoAtropelamento"/>
+  <rdfs:range rdf:resource="#TrechoRodovia"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#ocorreSob">
+  <rdfs:domain rdf:resource="#EventoAtropelamento"/>
+  <rdfs:range rdf:resource="#CondicaoAmbiental"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#ocorreDurante">
+  <rdfs:domain rdf:resource="#EventoAtropelamento"/>
+  <rdfs:range rdf:resource="#PeriodoTemporal"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#possuiFatorRisco">
+  <rdfs:domain rdf:resource="#EventoAtropelamento"/>
+  <rdfs:range rdf:resource="#FatorRisco"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#proximoA">
+  <rdfs:domain rdf:resource="#TrechoRodovia"/>
+  <rdfs:range rdf:resource="#Habitat"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#pertenceARodovia">
+  <rdfs:domain rdf:resource="#TrechoRodovia"/>
+  <rdfs:range rdf:resource="#Rodovia"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#contem">
+  <rdfs:domain rdf:resource="#Habitat"/>
+  <rdfs:range rdf:resource="#Animal"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#viveEm">
+  <rdfs:domain rdf:resource="#Animal"/>
+  <rdfs:range rdf:resource="#Habitat"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#atravessaRodovia">
+  <rdfs:domain rdf:resource="#Animal"/>
+  <rdfs:range rdf:resource="#Rodovia"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#afetaVisibilidade">
+  <rdfs:domain rdf:resource="#CondicaoClimatica"/>
+  <rdfs:range rdf:resource="#VisibilidadeReduzida"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#aumentaRisco">
+  <rdfs:domain rdf:resource="#CondicaoAmbiental"/>
+  <rdfs:range rdf:resource="#FatorRisco"/>
+</owl:ObjectProperty>
+
+<owl:DatatypeProperty rdf:about="#nomeEspecie">
+  <rdfs:domain rdf:resource="#Animal"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#nomePopular">
+  <rdfs:domain rdf:resource="#Animal"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#kmInicial">
+  <rdfs:domain rdf:resource="#TrechoRodovia"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#kmFinal">
+  <rdfs:domain rdf:resource="#TrechoRodovia"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#coordenadaLat">
+  <rdfs:domain rdf:resource="#TrechoRodovia"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#coordenadaLon">
+  <rdfs:domain rdf:resource="#TrechoRodovia"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#nomeRodovia">
+  <rdfs:domain rdf:resource="#Rodovia"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#dataEvento">
+  <rdfs:domain rdf:resource="#EventoAtropelamento"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#horarioEvento">
+  <rdfs:domain rdf:resource="#EventoAtropelamento"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#resultadoFatal">
+  <rdfs:domain rdf:resource="#EventoAtropelamento"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#descricaoClima">
+  <rdfs:domain rdf:resource="#CondicaoClimatica"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#temperatura">
+  <rdfs:domain rdf:resource="#CondicaoClimatica"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#pluviosidade">
+  <rdfs:domain rdf:resource="#CondicaoClimatica"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#nomeHabitat">
+  <rdfs:domain rdf:resource="#Habitat"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#areaHabitat">
+  <rdfs:domain rdf:resource="#Habitat"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#nivelRisco">
+  <rdfs:domain rdf:resource="#FatorRisco"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#descricaoRisco">
+  <rdfs:domain rdf:resource="#FatorRisco"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+</owl:DatatypeProperty>
+
+<owl:Class rdf:about="#EventoAtropelamento">
+  <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#envolveAnimal"/>
+      <owl:onClass rdf:resource="#Animal"/>
+      <owl:minQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:minQualifiedCardinality>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#ocorreEm"/>
+      <owl:onClass rdf:resource="#TrechoRodovia"/>
+      <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+</owl:Class>
+
+<owl:Class rdf:about="#Animal">
+  <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+</owl:Class>
+
+<owl:Class rdf:about="#TrechoRodovia">
+  <rdfs:subClassOf rdf:resource="#Infraestrutura"/>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#pertenceARodovia"/>
+      <owl:onClass rdf:resource="#Rodovia"/>
+      <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+</owl:Class>
+
+<owl:Class rdf:about="#CondicaoAmbiental">
+  <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+</owl:Class>
+
+<owl:Class rdf:about="#PeriodoTemporal">
+  <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+</owl:Class>
+
+<owl:Class rdf:about="#FatorRisco">
+  <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Habitat">
+  <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Rodovia">
+  <rdfs:subClassOf rdf:resource="#Infraestrutura"/>
+</owl:Class>
+
+<owl:Class rdf:about="#CondicaoClimatica">
+  <rdfs:subClassOf rdf:resource="#CondicaoAmbiental"/>
+</owl:Class>
+
+<owl:Class rdf:about="#VisibilidadeReduzida">
+  <rdfs:subClassOf rdf:resource="#FatorRisco"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Infraestrutura">
+  <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Mamifero">
+  <rdfs:subClassOf rdf:resource="#Animal"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Ave">
+  <rdfs:subClassOf rdf:resource="#Animal"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Reptil">
+  <rdfs:subClassOf rdf:resource="#Animal"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Capivara">
+  <rdfs:subClassOf rdf:resource="#Mamifero"/>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#viveEm"/>
+      <owl:someValuesFrom>
+        <owl:Class>
+          <owl:unionOf rdf:parseType="Collection">
+            <rdf:Description rdf:about="#Banhado"/>
+            <rdf:Description rdf:about="#CorpoDagua"/>
+          </owl:unionOf>
+        </owl:Class>
+      </owl:someValuesFrom>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+</owl:Class>
+
+<owl:Class rdf:about="#Banhado">
+  <rdfs:subClassOf rdf:resource="#Habitat"/>
+</owl:Class>
+
+<owl:Class rdf:about="#CorpoDagua">
+  <rdfs:subClassOf rdf:resource="#Habitat"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Lontra">
+  <rdfs:subClassOf rdf:resource="#Mamifero"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Tatu">
+  <rdfs:subClassOf rdf:resource="#Mamifero"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Veado">
+  <rdfs:subClassOf rdf:resource="#Mamifero"/>
+</owl:Class>
+
+<owl:Class rdf:about="#AveAquatica">
+  <rdfs:subClassOf rdf:resource="#Ave"/>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#viveEm"/>
+      <owl:someValuesFrom rdf:resource="#CorpoDagua"/>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+</owl:Class>
+
+<owl:Class rdf:about="#AveTerrestre">
+  <rdfs:subClassOf rdf:resource="#Ave"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Serpente">
+  <rdfs:subClassOf rdf:resource="#Reptil"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Tartaruga">
+  <rdfs:subClassOf rdf:resource="#Reptil"/>
+</owl:Class>
+
+<owl:Class rdf:about="#VegetacaoRiparia">
+  <rdfs:subClassOf rdf:resource="#Habitat"/>
+</owl:Class>
+
+<owl:Class rdf:about="#CampoAlagado">
+  <rdfs:subClassOf rdf:resource="#Habitat"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Lagoa">
+  <rdfs:subClassOf rdf:resource="#CorpoDagua"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Rio">
+  <rdfs:subClassOf rdf:resource="#CorpoDagua"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Vala">
+  <rdfs:subClassOf rdf:resource="#CorpoDagua"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Ponte">
+  <rdfs:subClassOf rdf:resource="#Infraestrutura"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Acostamento">
+  <rdfs:subClassOf rdf:resource="#Infraestrutura"/>
+</owl:Class>
+
+<owl:Class rdf:about="#NivelLuminosidade">
+  <rdfs:subClassOf rdf:resource="#CondicaoAmbiental"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Estacao">
+  <rdfs:subClassOf rdf:resource="#PeriodoTemporal"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Horario">
+  <rdfs:subClassOf rdf:resource="#PeriodoTemporal"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Chuva">
+  <rdfs:subClassOf rdf:resource="#CondicaoClimatica"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Neblina">
+  <rdfs:subClassOf rdf:resource="#CondicaoClimatica"/>
+</owl:Class>
+
+<owl:Class rdf:about="#CeuAberto">
+  <rdfs:subClassOf rdf:resource="#CondicaoClimatica"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Diurno">
+  <rdfs:subClassOf rdf:resource="#NivelLuminosidade"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Noturno">
+  <rdfs:subClassOf rdf:resource="#NivelLuminosidade"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Crepuscular">
+  <rdfs:subClassOf rdf:resource="#NivelLuminosidade"/>
+</owl:Class>
+
+<owl:Class rdf:about="#TrafegoVeicular">
+  <rdfs:subClassOf rdf:resource="#FatorRisco"/>
+</owl:Class>
+
+<owl:Class rdf:about="#ProximidadeCorpoHidrico">
+  <rdfs:subClassOf rdf:resource="#FatorRisco"/>
+</owl:Class>
+
+<owl:Class rdf:about="#AusenciaDePassagem">
+  <rdfs:subClassOf rdf:resource="#FatorRisco"/>
+</owl:Class>
+
+<owl:NamedIndividual rdf:about="#rodovia_BR471">
+  <rdf:type rdf:resource="#Rodovia"/>
+  <nomeRodovia rdf:datatype="http://www.w3.org/2001/XMLSchema#string">BR-471</nomeRodovia>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#trecho_BR471_km295">
+  <rdf:type rdf:resource="#TrechoRodovia"/>
+  <pertenceARodovia rdf:resource="#rodovia_BR471"/>
+  <proximoA rdf:resource="#banhado_taim_sul"/>
+  <kmInicial rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">295.0</kmInicial>
+  <kmFinal rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">298.0</kmFinal>
+  <coordenadaLat rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">-33.4312</coordenadaLat>
+  <coordenadaLon rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">-53.1872</coordenadaLon>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#trecho_BR471_km298">
+  <rdf:type rdf:resource="#TrechoRodovia"/>
+  <pertenceARodovia rdf:resource="#rodovia_BR471"/>
+  <proximoA rdf:resource="#banhado_taim_central"/>
+  <kmInicial rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">298.0</kmInicial>
+  <kmFinal rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">301.0</kmFinal>
+  <coordenadaLat rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">-33.4489</coordenadaLat>
+  <coordenadaLon rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">-53.2104</coordenadaLon>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#trecho_BR471_km301">
+  <rdf:type rdf:resource="#TrechoRodovia"/>
+  <pertenceARodovia rdf:resource="#rodovia_BR471"/>
+  <proximoA rdf:resource="#banhado_taim_sul"/>
+  <kmInicial rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">301.0</kmInicial>
+  <kmFinal rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">304.0</kmFinal>
+  <coordenadaLat rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">-33.467</coordenadaLat>
+  <coordenadaLon rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">-53.2341</coordenadaLon>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#trecho_BR471_km304">
+  <rdf:type rdf:resource="#TrechoRodovia"/>
+  <pertenceARodovia rdf:resource="#rodovia_BR471"/>
+  <proximoA rdf:resource="#banhado_taim_sul"/>
+  <kmInicial rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">304.0</kmInicial>
+  <kmFinal rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">307.0</kmFinal>
+  <coordenadaLat rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">-33.4851</coordenadaLat>
+  <coordenadaLon rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">-53.2578</coordenadaLon>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#trecho_BR471_km307">
+  <rdf:type rdf:resource="#TrechoRodovia"/>
+  <pertenceARodovia rdf:resource="#rodovia_BR471"/>
+  <proximoA rdf:resource="#banhado_taim_sul"/>
+  <kmInicial rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">307.0</kmInicial>
+  <kmFinal rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">310.0</kmFinal>
+  <coordenadaLat rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">-33.5032</coordenadaLat>
+  <coordenadaLon rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">-53.2815</coordenadaLon>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#trecho_BR471_km310">
+  <rdf:type rdf:resource="#TrechoRodovia"/>
+  <pertenceARodovia rdf:resource="#rodovia_BR471"/>
+  <proximoA rdf:resource="#banhado_taim_sul"/>
+  <kmInicial rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">310.0</kmInicial>
+  <kmFinal rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">313.0</kmFinal>
+  <coordenadaLat rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">-33.5213</coordenadaLat>
+  <coordenadaLon rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">-53.3052</coordenadaLon>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#trecho_BR471_km313">
+  <rdf:type rdf:resource="#TrechoRodovia"/>
+  <pertenceARodovia rdf:resource="#rodovia_BR471"/>
+  <proximoA rdf:resource="#banhado_taim_central"/>
+  <kmInicial rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">313.0</kmInicial>
+  <kmFinal rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">316.0</kmFinal>
+  <coordenadaLat rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">-33.5394</coordenadaLat>
+  <coordenadaLon rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">-53.3289</coordenadaLon>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#trecho_BR471_km316">
+  <rdf:type rdf:resource="#TrechoRodovia"/>
+  <pertenceARodovia rdf:resource="#rodovia_BR471"/>
+  <proximoA rdf:resource="#banhado_taim_norte"/>
+  <kmInicial rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">316.0</kmInicial>
+  <kmFinal rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">319.0</kmFinal>
+  <coordenadaLat rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">-33.5575</coordenadaLat>
+  <coordenadaLon rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">-53.3526</coordenadaLon>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#trecho_BR471_km319">
+  <rdf:type rdf:resource="#TrechoRodovia"/>
+  <pertenceARodovia rdf:resource="#rodovia_BR471"/>
+  <proximoA rdf:resource="#banhado_taim_norte"/>
+  <kmInicial rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">319.0</kmInicial>
+  <kmFinal rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">322.0</kmFinal>
+  <coordenadaLat rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">-33.5756</coordenadaLat>
+  <coordenadaLon rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">-53.3763</coordenadaLon>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#trecho_BR471_km322">
+  <rdf:type rdf:resource="#TrechoRodovia"/>
+  <pertenceARodovia rdf:resource="#rodovia_BR471"/>
+  <proximoA rdf:resource="#banhado_taim_central"/>
+  <kmInicial rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">322.0</kmInicial>
+  <kmFinal rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">325.0</kmFinal>
+  <coordenadaLat rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">-33.5937</coordenadaLat>
+  <coordenadaLon rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">-53.4</coordenadaLon>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#trecho_BR471_km325">
+  <rdf:type rdf:resource="#TrechoRodovia"/>
+  <pertenceARodovia rdf:resource="#rodovia_BR471"/>
+  <proximoA rdf:resource="#banhado_taim_central"/>
+  <kmInicial rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">325.0</kmInicial>
+  <kmFinal rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">328.0</kmFinal>
+  <coordenadaLat rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">-33.6118</coordenadaLat>
+  <coordenadaLon rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">-53.4237</coordenadaLon>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#trecho_BR471_km328">
+  <rdf:type rdf:resource="#TrechoRodovia"/>
+  <pertenceARodovia rdf:resource="#rodovia_BR471"/>
+  <proximoA rdf:resource="#banhado_taim_norte"/>
+  <kmInicial rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">328.0</kmInicial>
+  <kmFinal rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">331.0</kmFinal>
+  <coordenadaLat rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">-33.6299</coordenadaLat>
+  <coordenadaLon rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">-53.4474</coordenadaLon>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#trecho_BR471_km331">
+  <rdf:type rdf:resource="#TrechoRodovia"/>
+  <pertenceARodovia rdf:resource="#rodovia_BR471"/>
+  <proximoA rdf:resource="#banhado_taim_central"/>
+  <kmInicial rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">331.0</kmInicial>
+  <kmFinal rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">334.0</kmFinal>
+  <coordenadaLat rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">-33.648</coordenadaLat>
+  <coordenadaLon rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">-53.4711</coordenadaLon>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#trecho_BR471_km334">
+  <rdf:type rdf:resource="#TrechoRodovia"/>
+  <pertenceARodovia rdf:resource="#rodovia_BR471"/>
+  <proximoA rdf:resource="#banhado_taim_central"/>
+  <kmInicial rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">334.0</kmInicial>
+  <kmFinal rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">337.0</kmFinal>
+  <coordenadaLat rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">-33.6661</coordenadaLat>
+  <coordenadaLon rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">-53.4948</coordenadaLon>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#trecho_BR471_km337">
+  <rdf:type rdf:resource="#TrechoRodovia"/>
+  <pertenceARodovia rdf:resource="#rodovia_BR471"/>
+  <proximoA rdf:resource="#banhado_taim_sul"/>
+  <kmInicial rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">337.0</kmInicial>
+  <kmFinal rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">340.0</kmFinal>
+  <coordenadaLat rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">-33.6842</coordenadaLat>
+  <coordenadaLon rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">-53.5185</coordenadaLon>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#banhado_taim_norte">
+  <rdf:type rdf:resource="#Banhado"/>
+  <nomeHabitat rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Banhado do Taim Norte</nomeHabitat>
+  <areaHabitat rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">12500.0</areaHabitat>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#banhado_taim_sul">
+  <rdf:type rdf:resource="#Banhado"/>
+  <nomeHabitat rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Banhado do Taim Sul</nomeHabitat>
+  <areaHabitat rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">9800.0</areaHabitat>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#banhado_taim_central">
+  <rdf:type rdf:resource="#Banhado"/>
+  <nomeHabitat rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Banhado do Taim Central</nomeHabitat>
+  <areaHabitat rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">7300.0</areaHabitat>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#lagoa_mirim_margem">
+  <rdf:type rdf:resource="#Lagoa"/>
+  <nomeHabitat rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Margem Lagoa Mirim</nomeHabitat>
+  <areaHabitat rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">3200.0</areaHabitat>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#lagoa_mangueira">
+  <rdf:type rdf:resource="#Lagoa"/>
+  <nomeHabitat rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Lagoa Mangueira</nomeHabitat>
+  <areaHabitat rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">9300.0</areaHabitat>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#lagoa_verde">
+  <rdf:type rdf:resource="#Lagoa"/>
+  <nomeHabitat rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Lagoa Verde</nomeHabitat>
+  <areaHabitat rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">1500.0</areaHabitat>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#rio_taim">
+  <rdf:type rdf:resource="#Rio"/>
+  <nomeHabitat rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Rio Taim</nomeHabitat>
+  <areaHabitat rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">800.0</areaHabitat>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#vala_irrigacao">
+  <rdf:type rdf:resource="#Vala"/>
+  <nomeHabitat rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Vala de Irrigação BR-471</nomeHabitat>
+  <areaHabitat rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">120.0</areaHabitat>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#campo_alagado_norte">
+  <rdf:type rdf:resource="#CampoAlagado"/>
+  <nomeHabitat rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Campo Alagado Norte</nomeHabitat>
+  <areaHabitat rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">2100.0</areaHabitat>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#vegetacao_marginal">
+  <rdf:type rdf:resource="#VegetacaoRiparia"/>
+  <nomeHabitat rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Vegetação Marginal BR-471</nomeHabitat>
+  <areaHabitat rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">450.0</areaHabitat>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#clima_chuva_fraca">
+  <rdf:type rdf:resource="#Chuva"/>
+  <descricaoClima rdf:datatype="http://www.w3.org/2001/XMLSchema#string">chuva_fraca</descricaoClima>
+  <temperatura rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">16.5</temperatura>
+  <pluviosidade rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">12.0</pluviosidade>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#clima_chuva_moderada">
+  <rdf:type rdf:resource="#Chuva"/>
+  <descricaoClima rdf:datatype="http://www.w3.org/2001/XMLSchema#string">chuva_moderada</descricaoClima>
+  <temperatura rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">15.0</temperatura>
+  <pluviosidade rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">28.0</pluviosidade>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#clima_chuva_forte">
+  <rdf:type rdf:resource="#Chuva"/>
+  <descricaoClima rdf:datatype="http://www.w3.org/2001/XMLSchema#string">chuva_forte</descricaoClima>
+  <temperatura rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">13.5</temperatura>
+  <pluviosidade rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">55.0</pluviosidade>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#clima_neblina_leve">
+  <rdf:type rdf:resource="#Neblina"/>
+  <descricaoClima rdf:datatype="http://www.w3.org/2001/XMLSchema#string">neblina_leve</descricaoClima>
+  <temperatura rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">18.0</temperatura>
+  <pluviosidade rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.0</pluviosidade>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#clima_neblina_densa">
+  <rdf:type rdf:resource="#Neblina"/>
+  <descricaoClima rdf:datatype="http://www.w3.org/2001/XMLSchema#string">neblina_densa</descricaoClima>
+  <temperatura rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">16.0</temperatura>
+  <pluviosidade rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.0</pluviosidade>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#clima_ceu_aberto_dia">
+  <rdf:type rdf:resource="#CeuAberto"/>
+  <descricaoClima rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ceu_aberto</descricaoClima>
+  <temperatura rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">24.0</temperatura>
+  <pluviosidade rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.0</pluviosidade>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#clima_ceu_aberto_noc">
+  <rdf:type rdf:resource="#CeuAberto"/>
+  <descricaoClima rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ceu_aberto_noturno</descricaoClima>
+  <temperatura rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">17.0</temperatura>
+  <pluviosidade rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.0</pluviosidade>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#clima_ceu_nublado">
+  <rdf:type rdf:resource="#Neblina"/>
+  <descricaoClima rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ceu_nublado</descricaoClima>
+  <temperatura rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">19.5</temperatura>
+  <pluviosidade rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">2.0</pluviosidade>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#risco_trafego_alto">
+  <rdf:type rdf:resource="#TrafegoVeicular"/>
+  <nivelRisco rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">5</nivelRisco>
+  <descricaoRisco rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Volume de tráfego intenso (&gt;5000 veic/dia)</descricaoRisco>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#risco_trafego_medio">
+  <rdf:type rdf:resource="#TrafegoVeicular"/>
+  <nivelRisco rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">3</nivelRisco>
+  <descricaoRisco rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Volume de tráfego moderado</descricaoRisco>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#risco_visibilidade">
+  <rdf:type rdf:resource="#VisibilidadeReduzida"/>
+  <nivelRisco rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">4</nivelRisco>
+  <descricaoRisco rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Visibilidade reduzida por neblina ou chuva</descricaoRisco>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#risco_prox_hidrico">
+  <rdf:type rdf:resource="#ProximidadeCorpoHidrico"/>
+  <nivelRisco rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">4</nivelRisco>
+  <descricaoRisco rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Trecho adjacente a corpo hídrico</descricaoRisco>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#risco_sem_passagem">
+  <rdf:type rdf:resource="#AusenciaDePassagem"/>
+  <nivelRisco rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">5</nivelRisco>
+  <descricaoRisco rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Ausência de passagem de fauna na rodovia</descricaoRisco>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#periodo_noturno">
+  <rdf:type rdf:resource="#Noturno"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#periodo_diurno">
+  <rdf:type rdf:resource="#Diurno"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#periodo_crepuscular">
+  <rdf:type rdf:resource="#Crepuscular"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#estacao_verao">
+  <rdf:type rdf:resource="#Estacao"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#estacao_inverno">
+  <rdf:type rdf:resource="#Estacao"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#estacao_outono">
+  <rdf:type rdf:resource="#Estacao"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#estacao_primavera">
+  <rdf:type rdf:resource="#Estacao"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#capivara_001">
+  <rdf:type rdf:resource="#Capivara"/>
+  <viveEm rdf:resource="#banhado_taim_sul"/>
+  <nomeEspecie rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Hydrochoerus hydrochaeris</nomeEspecie>
+  <nomePopular rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Capivara</nomePopular>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#capivara_002">
+  <rdf:type rdf:resource="#Capivara"/>
+  <viveEm rdf:resource="#banhado_taim_norte"/>
+  <nomeEspecie rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Hydrochoerus hydrochaeris</nomeEspecie>
+  <nomePopular rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Capivara</nomePopular>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#capivara_003">
+  <rdf:type rdf:resource="#Capivara"/>
+  <viveEm rdf:resource="#banhado_taim_norte"/>
+  <nomeEspecie rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Hydrochoerus hydrochaeris</nomeEspecie>
+  <nomePopular rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Capivara</nomePopular>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#capivara_004">
+  <rdf:type rdf:resource="#Capivara"/>
+  <viveEm rdf:resource="#banhado_taim_norte"/>
+  <nomeEspecie rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Hydrochoerus hydrochaeris</nomeEspecie>
+  <nomePopular rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Capivara</nomePopular>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#capivara_005">
+  <rdf:type rdf:resource="#Capivara"/>
+  <viveEm rdf:resource="#banhado_taim_sul"/>
+  <nomeEspecie rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Hydrochoerus hydrochaeris</nomeEspecie>
+  <nomePopular rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Capivara</nomePopular>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#capivara_006">
+  <rdf:type rdf:resource="#Capivara"/>
+  <viveEm rdf:resource="#banhado_taim_sul"/>
+  <nomeEspecie rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Hydrochoerus hydrochaeris</nomeEspecie>
+  <nomePopular rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Capivara</nomePopular>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#capivara_007">
+  <rdf:type rdf:resource="#Capivara"/>
+  <viveEm rdf:resource="#banhado_taim_central"/>
+  <nomeEspecie rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Hydrochoerus hydrochaeris</nomeEspecie>
+  <nomePopular rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Capivara</nomePopular>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#capivara_008">
+  <rdf:type rdf:resource="#Capivara"/>
+  <viveEm rdf:resource="#banhado_taim_central"/>
+  <nomeEspecie rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Hydrochoerus hydrochaeris</nomeEspecie>
+  <nomePopular rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Capivara</nomePopular>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#capivara_009">
+  <rdf:type rdf:resource="#Capivara"/>
+  <viveEm rdf:resource="#banhado_taim_sul"/>
+  <nomeEspecie rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Hydrochoerus hydrochaeris</nomeEspecie>
+  <nomePopular rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Capivara</nomePopular>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#capivara_010">
+  <rdf:type rdf:resource="#Capivara"/>
+  <viveEm rdf:resource="#banhado_taim_norte"/>
+  <nomeEspecie rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Hydrochoerus hydrochaeris</nomeEspecie>
+  <nomePopular rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Capivara</nomePopular>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#lontra_001">
+  <rdf:type rdf:resource="#Lontra"/>
+  <viveEm rdf:resource="#banhado_taim_central"/>
+  <nomeEspecie rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Lontra longicaudis</nomeEspecie>
+  <nomePopular rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Lontra</nomePopular>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#lontra_002">
+  <rdf:type rdf:resource="#Lontra"/>
+  <viveEm rdf:resource="#banhado_taim_central"/>
+  <nomeEspecie rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Lontra longicaudis</nomeEspecie>
+  <nomePopular rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Lontra</nomePopular>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#lontra_003">
+  <rdf:type rdf:resource="#Lontra"/>
+  <viveEm rdf:resource="#banhado_taim_central"/>
+  <nomeEspecie rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Lontra longicaudis</nomeEspecie>
+  <nomePopular rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Lontra</nomePopular>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#lontra_004">
+  <rdf:type rdf:resource="#Lontra"/>
+  <viveEm rdf:resource="#banhado_taim_sul"/>
+  <nomeEspecie rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Lontra longicaudis</nomeEspecie>
+  <nomePopular rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Lontra</nomePopular>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#tatu_001">
+  <rdf:type rdf:resource="#Tatu"/>
+  <viveEm rdf:resource="#banhado_taim_norte"/>
+  <nomeEspecie rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Dasypus novemcinctus</nomeEspecie>
+  <nomePopular rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Tatu-galinha</nomePopular>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#veado_001">
+  <rdf:type rdf:resource="#Veado"/>
+  <viveEm rdf:resource="#banhado_taim_norte"/>
+  <nomeEspecie rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Blastocerus dichotomus</nomeEspecie>
+  <nomePopular rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Veado-do-pantanal</nomePopular>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#veado_002">
+  <rdf:type rdf:resource="#Veado"/>
+  <viveEm rdf:resource="#banhado_taim_norte"/>
+  <nomeEspecie rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Blastocerus dichotomus</nomeEspecie>
+  <nomePopular rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Veado-do-pantanal</nomePopular>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#veado_003">
+  <rdf:type rdf:resource="#Veado"/>
+  <viveEm rdf:resource="#banhado_taim_norte"/>
+  <nomeEspecie rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Blastocerus dichotomus</nomeEspecie>
+  <nomePopular rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Veado-do-pantanal</nomePopular>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#aveaquatica_001">
+  <rdf:type rdf:resource="#AveAquatica"/>
+  <viveEm rdf:resource="#banhado_taim_norte"/>
+  <nomeEspecie rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Ardea alba</nomeEspecie>
+  <nomePopular rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Garça-branca-grande</nomePopular>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#aveaquatica_002">
+  <rdf:type rdf:resource="#AveAquatica"/>
+  <viveEm rdf:resource="#banhado_taim_norte"/>
+  <nomeEspecie rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Ardea alba</nomeEspecie>
+  <nomePopular rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Garça-branca-grande</nomePopular>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#aveaquatica_003">
+  <rdf:type rdf:resource="#AveAquatica"/>
+  <viveEm rdf:resource="#banhado_taim_sul"/>
+  <nomeEspecie rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Ardea alba</nomeEspecie>
+  <nomePopular rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Garça-branca-grande</nomePopular>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#aveaquatica_004">
+  <rdf:type rdf:resource="#AveAquatica"/>
+  <viveEm rdf:resource="#banhado_taim_sul"/>
+  <nomeEspecie rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Ardea alba</nomeEspecie>
+  <nomePopular rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Garça-branca-grande</nomePopular>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#aveaquatica_005">
+  <rdf:type rdf:resource="#AveAquatica"/>
+  <viveEm rdf:resource="#banhado_taim_norte"/>
+  <nomeEspecie rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Ardea alba</nomeEspecie>
+  <nomePopular rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Garça-branca-grande</nomePopular>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#aveaquatica_006">
+  <rdf:type rdf:resource="#AveAquatica"/>
+  <viveEm rdf:resource="#banhado_taim_sul"/>
+  <nomeEspecie rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Ardea cocoi</nomeEspecie>
+  <nomePopular rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Garça-moura</nomePopular>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#aveaquatica_007">
+  <rdf:type rdf:resource="#AveAquatica"/>
+  <viveEm rdf:resource="#banhado_taim_central"/>
+  <nomeEspecie rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Ardea cocoi</nomeEspecie>
+  <nomePopular rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Garça-moura</nomePopular>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#aveaquatica_008">
+  <rdf:type rdf:resource="#AveAquatica"/>
+  <viveEm rdf:resource="#banhado_taim_sul"/>
+  <nomeEspecie rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Ardea cocoi</nomeEspecie>
+  <nomePopular rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Garça-moura</nomePopular>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#aveaquatica_009">
+  <rdf:type rdf:resource="#AveAquatica"/>
+  <viveEm rdf:resource="#banhado_taim_sul"/>
+  <nomeEspecie rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Ardea cocoi</nomeEspecie>
+  <nomePopular rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Garça-moura</nomePopular>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#aveaquatica_010">
+  <rdf:type rdf:resource="#AveAquatica"/>
+  <viveEm rdf:resource="#banhado_taim_norte"/>
+  <nomeEspecie rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Ardea cocoi</nomeEspecie>
+  <nomePopular rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Garça-moura</nomePopular>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#aveaquatica_011">
+  <rdf:type rdf:resource="#AveAquatica"/>
+  <viveEm rdf:resource="#banhado_taim_central"/>
+  <nomeEspecie rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Platalea ajaja</nomeEspecie>
+  <nomePopular rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Colhereiro</nomePopular>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#aveaquatica_012">
+  <rdf:type rdf:resource="#AveAquatica"/>
+  <viveEm rdf:resource="#banhado_taim_norte"/>
+  <nomeEspecie rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Platalea ajaja</nomeEspecie>
+  <nomePopular rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Colhereiro</nomePopular>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#aveaquatica_013">
+  <rdf:type rdf:resource="#AveAquatica"/>
+  <viveEm rdf:resource="#banhado_taim_sul"/>
+  <nomeEspecie rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Platalea ajaja</nomeEspecie>
+  <nomePopular rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Colhereiro</nomePopular>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#aveaquatica_014">
+  <rdf:type rdf:resource="#AveAquatica"/>
+  <viveEm rdf:resource="#banhado_taim_norte"/>
+  <nomeEspecie rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Platalea ajaja</nomeEspecie>
+  <nomePopular rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Colhereiro</nomePopular>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#aveaquatica_015">
+  <rdf:type rdf:resource="#AveAquatica"/>
+  <viveEm rdf:resource="#banhado_taim_norte"/>
+  <nomeEspecie rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Platalea ajaja</nomeEspecie>
+  <nomePopular rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Colhereiro</nomePopular>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#aveaquatica_016">
+  <rdf:type rdf:resource="#AveAquatica"/>
+  <viveEm rdf:resource="#banhado_taim_norte"/>
+  <nomeEspecie rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Nannopterum brasilianus</nomeEspecie>
+  <nomePopular rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Biguá</nomePopular>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#aveaquatica_017">
+  <rdf:type rdf:resource="#AveAquatica"/>
+  <viveEm rdf:resource="#banhado_taim_norte"/>
+  <nomeEspecie rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Nannopterum brasilianus</nomeEspecie>
+  <nomePopular rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Biguá</nomePopular>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#aveaquatica_018">
+  <rdf:type rdf:resource="#AveAquatica"/>
+  <viveEm rdf:resource="#banhado_taim_sul"/>
+  <nomeEspecie rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Nannopterum brasilianus</nomeEspecie>
+  <nomePopular rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Biguá</nomePopular>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#aveterrestre_001">
+  <rdf:type rdf:resource="#AveTerrestre"/>
+  <viveEm rdf:resource="#banhado_taim_central"/>
+  <nomeEspecie rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Vanellus chilensis</nomeEspecie>
+  <nomePopular rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Quero-quero</nomePopular>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#aveterrestre_002">
+  <rdf:type rdf:resource="#AveTerrestre"/>
+  <viveEm rdf:resource="#banhado_taim_central"/>
+  <nomeEspecie rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Vanellus chilensis</nomeEspecie>
+  <nomePopular rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Quero-quero</nomePopular>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#aveterrestre_003">
+  <rdf:type rdf:resource="#AveTerrestre"/>
+  <viveEm rdf:resource="#banhado_taim_central"/>
+  <nomeEspecie rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Vanellus chilensis</nomeEspecie>
+  <nomePopular rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Quero-quero</nomePopular>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#aveterrestre_004">
+  <rdf:type rdf:resource="#AveTerrestre"/>
+  <viveEm rdf:resource="#banhado_taim_norte"/>
+  <nomeEspecie rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Vanellus chilensis</nomeEspecie>
+  <nomePopular rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Quero-quero</nomePopular>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#aveterrestre_005">
+  <rdf:type rdf:resource="#AveTerrestre"/>
+  <viveEm rdf:resource="#banhado_taim_central"/>
+  <nomeEspecie rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Vanellus chilensis</nomeEspecie>
+  <nomePopular rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Quero-quero</nomePopular>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#serpente_001">
+  <rdf:type rdf:resource="#Serpente"/>
+  <viveEm rdf:resource="#banhado_taim_central"/>
+  <nomeEspecie rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Helicops infrataeniatus</nomeEspecie>
+  <nomePopular rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Serpente-d'água</nomePopular>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#serpente_002">
+  <rdf:type rdf:resource="#Serpente"/>
+  <viveEm rdf:resource="#banhado_taim_sul"/>
+  <nomeEspecie rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Helicops infrataeniatus</nomeEspecie>
+  <nomePopular rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Serpente-d'água</nomePopular>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#serpente_003">
+  <rdf:type rdf:resource="#Serpente"/>
+  <viveEm rdf:resource="#banhado_taim_sul"/>
+  <nomeEspecie rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Helicops infrataeniatus</nomeEspecie>
+  <nomePopular rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Serpente-d'água</nomePopular>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#serpente_004">
+  <rdf:type rdf:resource="#Serpente"/>
+  <viveEm rdf:resource="#banhado_taim_sul"/>
+  <nomeEspecie rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Helicops infrataeniatus</nomeEspecie>
+  <nomePopular rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Serpente-d'água</nomePopular>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#serpente_005">
+  <rdf:type rdf:resource="#Serpente"/>
+  <viveEm rdf:resource="#banhado_taim_sul"/>
+  <nomeEspecie rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Helicops infrataeniatus</nomeEspecie>
+  <nomePopular rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Serpente-d'água</nomePopular>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#tartaruga_001">
+  <rdf:type rdf:resource="#Tartaruga"/>
+  <viveEm rdf:resource="#banhado_taim_central"/>
+  <nomeEspecie rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Acanthochelys spixii</nomeEspecie>
+  <nomePopular rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Tartaruga-tigre</nomePopular>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#tartaruga_002">
+  <rdf:type rdf:resource="#Tartaruga"/>
+  <viveEm rdf:resource="#banhado_taim_central"/>
+  <nomeEspecie rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Acanthochelys spixii</nomeEspecie>
+  <nomePopular rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Tartaruga-tigre</nomePopular>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#tartaruga_003">
+  <rdf:type rdf:resource="#Tartaruga"/>
+  <viveEm rdf:resource="#banhado_taim_norte"/>
+  <nomeEspecie rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Acanthochelys spixii</nomeEspecie>
+  <nomePopular rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Tartaruga-tigre</nomePopular>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#tartaruga_004">
+  <rdf:type rdf:resource="#Tartaruga"/>
+  <viveEm rdf:resource="#banhado_taim_norte"/>
+  <nomeEspecie rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Acanthochelys spixii</nomeEspecie>
+  <nomePopular rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Tartaruga-tigre</nomePopular>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#evento_001">
+  <rdf:type rdf:resource="#EventoAtropelamento"/>
+  <envolveAnimal rdf:resource="#capivara_006"/>
+  <ocorreEm rdf:resource="#trecho_BR471_km325"/>
+  <ocorreSob rdf:resource="#clima_ceu_nublado"/>
+  <ocorreDurante rdf:resource="#periodo_crepuscular"/>
+  <possuiFatorRisco rdf:resource="#risco_prox_hidrico"/>
+  <dataEvento rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2021-04-23</dataEvento>
+  <horarioEvento rdf:datatype="http://www.w3.org/2001/XMLSchema#string">07:36</horarioEvento>
+  <resultadoFatal rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</resultadoFatal>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#evento_002">
+  <rdf:type rdf:resource="#EventoAtropelamento"/>
+  <envolveAnimal rdf:resource="#capivara_001"/>
+  <ocorreEm rdf:resource="#trecho_BR471_km301"/>
+  <ocorreSob rdf:resource="#clima_neblina_leve"/>
+  <ocorreDurante rdf:resource="#periodo_noturno"/>
+  <possuiFatorRisco rdf:resource="#risco_trafego_alto"/>
+  <dataEvento rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2022-10-07</dataEvento>
+  <horarioEvento rdf:datatype="http://www.w3.org/2001/XMLSchema#string">22:30</horarioEvento>
+  <resultadoFatal rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</resultadoFatal>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#evento_003">
+  <rdf:type rdf:resource="#EventoAtropelamento"/>
+  <envolveAnimal rdf:resource="#serpente_005"/>
+  <ocorreEm rdf:resource="#trecho_BR471_km331"/>
+  <ocorreSob rdf:resource="#clima_chuva_fraca"/>
+  <ocorreDurante rdf:resource="#periodo_noturno"/>
+  <possuiFatorRisco rdf:resource="#risco_prox_hidrico"/>
+  <dataEvento rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2020-04-29</dataEvento>
+  <horarioEvento rdf:datatype="http://www.w3.org/2001/XMLSchema#string">21:06</horarioEvento>
+  <resultadoFatal rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</resultadoFatal>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#evento_004">
+  <rdf:type rdf:resource="#EventoAtropelamento"/>
+  <envolveAnimal rdf:resource="#lontra_004"/>
+  <ocorreEm rdf:resource="#trecho_BR471_km307"/>
+  <ocorreSob rdf:resource="#clima_ceu_aberto_dia"/>
+  <ocorreDurante rdf:resource="#periodo_noturno"/>
+  <possuiFatorRisco rdf:resource="#risco_trafego_alto"/>
+  <dataEvento rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2021-11-30</dataEvento>
+  <horarioEvento rdf:datatype="http://www.w3.org/2001/XMLSchema#string">22:28</horarioEvento>
+  <resultadoFatal rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</resultadoFatal>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#evento_005">
+  <rdf:type rdf:resource="#EventoAtropelamento"/>
+  <envolveAnimal rdf:resource="#aveaquatica_010"/>
+  <ocorreEm rdf:resource="#trecho_BR471_km301"/>
+  <ocorreSob rdf:resource="#clima_ceu_nublado"/>
+  <ocorreDurante rdf:resource="#periodo_diurno"/>
+  <possuiFatorRisco rdf:resource="#risco_prox_hidrico"/>
+  <dataEvento rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2022-06-04</dataEvento>
+  <horarioEvento rdf:datatype="http://www.w3.org/2001/XMLSchema#string">18:31</horarioEvento>
+  <resultadoFatal rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</resultadoFatal>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#evento_006">
+  <rdf:type rdf:resource="#EventoAtropelamento"/>
+  <envolveAnimal rdf:resource="#tatu_001"/>
+  <ocorreEm rdf:resource="#trecho_BR471_km334"/>
+  <ocorreSob rdf:resource="#clima_neblina_densa"/>
+  <ocorreDurante rdf:resource="#periodo_crepuscular"/>
+  <possuiFatorRisco rdf:resource="#risco_prox_hidrico"/>
+  <dataEvento rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2021-10-18</dataEvento>
+  <horarioEvento rdf:datatype="http://www.w3.org/2001/XMLSchema#string">07:10</horarioEvento>
+  <resultadoFatal rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</resultadoFatal>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#evento_007">
+  <rdf:type rdf:resource="#EventoAtropelamento"/>
+  <envolveAnimal rdf:resource="#veado_002"/>
+  <ocorreEm rdf:resource="#trecho_BR471_km325"/>
+  <ocorreSob rdf:resource="#clima_chuva_moderada"/>
+  <ocorreDurante rdf:resource="#periodo_diurno"/>
+  <possuiFatorRisco rdf:resource="#risco_trafego_alto"/>
+  <dataEvento rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2023-01-19</dataEvento>
+  <horarioEvento rdf:datatype="http://www.w3.org/2001/XMLSchema#string">15:15</horarioEvento>
+  <resultadoFatal rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</resultadoFatal>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#evento_008">
+  <rdf:type rdf:resource="#EventoAtropelamento"/>
+  <envolveAnimal rdf:resource="#aveaquatica_005"/>
+  <ocorreEm rdf:resource="#trecho_BR471_km313"/>
+  <ocorreSob rdf:resource="#clima_ceu_aberto_dia"/>
+  <ocorreDurante rdf:resource="#periodo_diurno"/>
+  <possuiFatorRisco rdf:resource="#risco_sem_passagem"/>
+  <dataEvento rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2021-10-02</dataEvento>
+  <horarioEvento rdf:datatype="http://www.w3.org/2001/XMLSchema#string">10:51</horarioEvento>
+  <resultadoFatal rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</resultadoFatal>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#evento_009">
+  <rdf:type rdf:resource="#EventoAtropelamento"/>
+  <envolveAnimal rdf:resource="#tartaruga_002"/>
+  <ocorreEm rdf:resource="#trecho_BR471_km337"/>
+  <ocorreSob rdf:resource="#clima_neblina_leve"/>
+  <ocorreDurante rdf:resource="#periodo_noturno"/>
+  <possuiFatorRisco rdf:resource="#risco_visibilidade"/>
+  <dataEvento rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2022-12-16</dataEvento>
+  <horarioEvento rdf:datatype="http://www.w3.org/2001/XMLSchema#string">00:45</horarioEvento>
+  <resultadoFatal rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</resultadoFatal>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#evento_010">
+  <rdf:type rdf:resource="#EventoAtropelamento"/>
+  <envolveAnimal rdf:resource="#aveterrestre_004"/>
+  <ocorreEm rdf:resource="#trecho_BR471_km301"/>
+  <ocorreSob rdf:resource="#clima_ceu_aberto_noc"/>
+  <ocorreDurante rdf:resource="#periodo_noturno"/>
+  <possuiFatorRisco rdf:resource="#risco_trafego_alto"/>
+  <dataEvento rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2021-04-11</dataEvento>
+  <horarioEvento rdf:datatype="http://www.w3.org/2001/XMLSchema#string">23:11</horarioEvento>
+  <resultadoFatal rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</resultadoFatal>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#evento_011">
+  <rdf:type rdf:resource="#EventoAtropelamento"/>
+  <envolveAnimal rdf:resource="#aveaquatica_015"/>
+  <ocorreEm rdf:resource="#trecho_BR471_km298"/>
+  <ocorreSob rdf:resource="#clima_ceu_aberto_dia"/>
+  <ocorreDurante rdf:resource="#periodo_crepuscular"/>
+  <possuiFatorRisco rdf:resource="#risco_visibilidade"/>
+  <dataEvento rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2021-06-19</dataEvento>
+  <horarioEvento rdf:datatype="http://www.w3.org/2001/XMLSchema#string">06:13</horarioEvento>
+  <resultadoFatal rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</resultadoFatal>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#evento_012">
+  <rdf:type rdf:resource="#EventoAtropelamento"/>
+  <envolveAnimal rdf:resource="#capivara_007"/>
+  <ocorreEm rdf:resource="#trecho_BR471_km301"/>
+  <ocorreSob rdf:resource="#clima_ceu_aberto_dia"/>
+  <ocorreDurante rdf:resource="#periodo_diurno"/>
+  <possuiFatorRisco rdf:resource="#risco_prox_hidrico"/>
+  <dataEvento rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2021-04-14</dataEvento>
+  <horarioEvento rdf:datatype="http://www.w3.org/2001/XMLSchema#string">09:42</horarioEvento>
+  <resultadoFatal rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</resultadoFatal>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#evento_013">
+  <rdf:type rdf:resource="#EventoAtropelamento"/>
+  <envolveAnimal rdf:resource="#lontra_001"/>
+  <ocorreEm rdf:resource="#trecho_BR471_km313"/>
+  <ocorreSob rdf:resource="#clima_chuva_forte"/>
+  <ocorreDurante rdf:resource="#periodo_noturno"/>
+  <possuiFatorRisco rdf:resource="#risco_trafego_medio"/>
+  <dataEvento rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2021-05-11</dataEvento>
+  <horarioEvento rdf:datatype="http://www.w3.org/2001/XMLSchema#string">04:44</horarioEvento>
+  <resultadoFatal rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</resultadoFatal>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#evento_014">
+  <rdf:type rdf:resource="#EventoAtropelamento"/>
+  <envolveAnimal rdf:resource="#serpente_004"/>
+  <ocorreEm rdf:resource="#trecho_BR471_km295"/>
+  <ocorreSob rdf:resource="#clima_chuva_moderada"/>
+  <ocorreDurante rdf:resource="#periodo_diurno"/>
+  <possuiFatorRisco rdf:resource="#risco_sem_passagem"/>
+  <dataEvento rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2023-10-22</dataEvento>
+  <horarioEvento rdf:datatype="http://www.w3.org/2001/XMLSchema#string">10:38</horarioEvento>
+  <resultadoFatal rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</resultadoFatal>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#evento_015">
+  <rdf:type rdf:resource="#EventoAtropelamento"/>
+  <envolveAnimal rdf:resource="#aveaquatica_004"/>
+  <ocorreEm rdf:resource="#trecho_BR471_km298"/>
+  <ocorreSob rdf:resource="#clima_neblina_densa"/>
+  <ocorreDurante rdf:resource="#periodo_noturno"/>
+  <possuiFatorRisco rdf:resource="#risco_sem_passagem"/>
+  <dataEvento rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2020-11-14</dataEvento>
+  <horarioEvento rdf:datatype="http://www.w3.org/2001/XMLSchema#string">22:37</horarioEvento>
+  <resultadoFatal rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</resultadoFatal>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#evento_016">
+  <rdf:type rdf:resource="#EventoAtropelamento"/>
+  <envolveAnimal rdf:resource="#aveaquatica_015"/>
+  <ocorreEm rdf:resource="#trecho_BR471_km316"/>
+  <ocorreSob rdf:resource="#clima_ceu_aberto_dia"/>
+  <ocorreDurante rdf:resource="#periodo_crepuscular"/>
+  <possuiFatorRisco rdf:resource="#risco_trafego_alto"/>
+  <dataEvento rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2023-05-14</dataEvento>
+  <horarioEvento rdf:datatype="http://www.w3.org/2001/XMLSchema#string">05:03</horarioEvento>
+  <resultadoFatal rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</resultadoFatal>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#evento_017">
+  <rdf:type rdf:resource="#EventoAtropelamento"/>
+  <envolveAnimal rdf:resource="#aveterrestre_003"/>
+  <ocorreEm rdf:resource="#trecho_BR471_km298"/>
+  <ocorreSob rdf:resource="#clima_chuva_forte"/>
+  <ocorreDurante rdf:resource="#periodo_noturno"/>
+  <possuiFatorRisco rdf:resource="#risco_sem_passagem"/>
+  <dataEvento rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2023-04-21</dataEvento>
+  <horarioEvento rdf:datatype="http://www.w3.org/2001/XMLSchema#string">23:39</horarioEvento>
+  <resultadoFatal rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</resultadoFatal>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#evento_018">
+  <rdf:type rdf:resource="#EventoAtropelamento"/>
+  <envolveAnimal rdf:resource="#serpente_004"/>
+  <ocorreEm rdf:resource="#trecho_BR471_km301"/>
+  <ocorreSob rdf:resource="#clima_ceu_aberto_noc"/>
+  <ocorreDurante rdf:resource="#periodo_diurno"/>
+  <possuiFatorRisco rdf:resource="#risco_sem_passagem"/>
+  <dataEvento rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2020-11-15</dataEvento>
+  <horarioEvento rdf:datatype="http://www.w3.org/2001/XMLSchema#string">16:04</horarioEvento>
+  <resultadoFatal rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</resultadoFatal>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#evento_019">
+  <rdf:type rdf:resource="#EventoAtropelamento"/>
+  <envolveAnimal rdf:resource="#aveaquatica_012"/>
+  <ocorreEm rdf:resource="#trecho_BR471_km328"/>
+  <ocorreSob rdf:resource="#clima_neblina_densa"/>
+  <ocorreDurante rdf:resource="#periodo_noturno"/>
+  <possuiFatorRisco rdf:resource="#risco_prox_hidrico"/>
+  <dataEvento rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2020-04-12</dataEvento>
+  <horarioEvento rdf:datatype="http://www.w3.org/2001/XMLSchema#string">22:14</horarioEvento>
+  <resultadoFatal rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</resultadoFatal>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#evento_020">
+  <rdf:type rdf:resource="#EventoAtropelamento"/>
+  <envolveAnimal rdf:resource="#capivara_009"/>
+  <ocorreEm rdf:resource="#trecho_BR471_km319"/>
+  <ocorreSob rdf:resource="#clima_neblina_leve"/>
+  <ocorreDurante rdf:resource="#periodo_crepuscular"/>
+  <possuiFatorRisco rdf:resource="#risco_prox_hidrico"/>
+  <dataEvento rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2023-02-14</dataEvento>
+  <horarioEvento rdf:datatype="http://www.w3.org/2001/XMLSchema#string">05:31</horarioEvento>
+  <resultadoFatal rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</resultadoFatal>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#evento_021">
+  <rdf:type rdf:resource="#EventoAtropelamento"/>
+  <envolveAnimal rdf:resource="#aveterrestre_001"/>
+  <ocorreEm rdf:resource="#trecho_BR471_km322"/>
+  <ocorreSob rdf:resource="#clima_chuva_moderada"/>
+  <ocorreDurante rdf:resource="#periodo_diurno"/>
+  <possuiFatorRisco rdf:resource="#risco_trafego_medio"/>
+  <dataEvento rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2023-01-06</dataEvento>
+  <horarioEvento rdf:datatype="http://www.w3.org/2001/XMLSchema#string">16:46</horarioEvento>
+  <resultadoFatal rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</resultadoFatal>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#evento_022">
+  <rdf:type rdf:resource="#EventoAtropelamento"/>
+  <envolveAnimal rdf:resource="#serpente_004"/>
+  <ocorreEm rdf:resource="#trecho_BR471_km307"/>
+  <ocorreSob rdf:resource="#clima_neblina_densa"/>
+  <ocorreDurante rdf:resource="#periodo_noturno"/>
+  <possuiFatorRisco rdf:resource="#risco_sem_passagem"/>
+  <dataEvento rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2022-02-13</dataEvento>
+  <horarioEvento rdf:datatype="http://www.w3.org/2001/XMLSchema#string">04:09</horarioEvento>
+  <resultadoFatal rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</resultadoFatal>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#evento_023">
+  <rdf:type rdf:resource="#EventoAtropelamento"/>
+  <envolveAnimal rdf:resource="#tartaruga_003"/>
+  <ocorreEm rdf:resource="#trecho_BR471_km328"/>
+  <ocorreSob rdf:resource="#clima_chuva_forte"/>
+  <ocorreDurante rdf:resource="#periodo_diurno"/>
+  <possuiFatorRisco rdf:resource="#risco_trafego_alto"/>
+  <dataEvento rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2021-07-26</dataEvento>
+  <horarioEvento rdf:datatype="http://www.w3.org/2001/XMLSchema#string">10:52</horarioEvento>
+  <resultadoFatal rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</resultadoFatal>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#evento_024">
+  <rdf:type rdf:resource="#EventoAtropelamento"/>
+  <envolveAnimal rdf:resource="#aveaquatica_018"/>
+  <ocorreEm rdf:resource="#trecho_BR471_km295"/>
+  <ocorreSob rdf:resource="#clima_neblina_densa"/>
+  <ocorreDurante rdf:resource="#periodo_noturno"/>
+  <possuiFatorRisco rdf:resource="#risco_visibilidade"/>
+  <dataEvento rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2022-04-20</dataEvento>
+  <horarioEvento rdf:datatype="http://www.w3.org/2001/XMLSchema#string">23:34</horarioEvento>
+  <resultadoFatal rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</resultadoFatal>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#evento_025">
+  <rdf:type rdf:resource="#EventoAtropelamento"/>
+  <envolveAnimal rdf:resource="#aveaquatica_016"/>
+  <ocorreEm rdf:resource="#trecho_BR471_km295"/>
+  <ocorreSob rdf:resource="#clima_ceu_nublado"/>
+  <ocorreDurante rdf:resource="#periodo_diurno"/>
+  <possuiFatorRisco rdf:resource="#risco_visibilidade"/>
+  <dataEvento rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2023-10-02</dataEvento>
+  <horarioEvento rdf:datatype="http://www.w3.org/2001/XMLSchema#string">10:53</horarioEvento>
+  <resultadoFatal rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</resultadoFatal>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#evento_026">
+  <rdf:type rdf:resource="#EventoAtropelamento"/>
+  <envolveAnimal rdf:resource="#capivara_007"/>
+  <ocorreEm rdf:resource="#trecho_BR471_km301"/>
+  <ocorreSob rdf:resource="#clima_neblina_leve"/>
+  <ocorreDurante rdf:resource="#periodo_diurno"/>
+  <possuiFatorRisco rdf:resource="#risco_sem_passagem"/>
+  <dataEvento rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2022-03-02</dataEvento>
+  <horarioEvento rdf:datatype="http://www.w3.org/2001/XMLSchema#string">19:52</horarioEvento>
+  <resultadoFatal rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</resultadoFatal>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#evento_027">
+  <rdf:type rdf:resource="#EventoAtropelamento"/>
+  <envolveAnimal rdf:resource="#aveaquatica_014"/>
+  <ocorreEm rdf:resource="#trecho_BR471_km307"/>
+  <ocorreSob rdf:resource="#clima_ceu_aberto_dia"/>
+  <ocorreDurante rdf:resource="#periodo_crepuscular"/>
+  <possuiFatorRisco rdf:resource="#risco_trafego_medio"/>
+  <dataEvento rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2022-06-18</dataEvento>
+  <horarioEvento rdf:datatype="http://www.w3.org/2001/XMLSchema#string">05:44</horarioEvento>
+  <resultadoFatal rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</resultadoFatal>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#evento_028">
+  <rdf:type rdf:resource="#EventoAtropelamento"/>
+  <envolveAnimal rdf:resource="#serpente_005"/>
+  <ocorreEm rdf:resource="#trecho_BR471_km304"/>
+  <ocorreSob rdf:resource="#clima_chuva_moderada"/>
+  <ocorreDurante rdf:resource="#periodo_crepuscular"/>
+  <possuiFatorRisco rdf:resource="#risco_sem_passagem"/>
+  <dataEvento rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2022-06-14</dataEvento>
+  <horarioEvento rdf:datatype="http://www.w3.org/2001/XMLSchema#string">05:26</horarioEvento>
+  <resultadoFatal rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</resultadoFatal>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#evento_029">
+  <rdf:type rdf:resource="#EventoAtropelamento"/>
+  <envolveAnimal rdf:resource="#aveaquatica_009"/>
+  <ocorreEm rdf:resource="#trecho_BR471_km310"/>
+  <ocorreSob rdf:resource="#clima_ceu_aberto_noc"/>
+  <ocorreDurante rdf:resource="#periodo_diurno"/>
+  <possuiFatorRisco rdf:resource="#risco_sem_passagem"/>
+  <dataEvento rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2023-12-29</dataEvento>
+  <horarioEvento rdf:datatype="http://www.w3.org/2001/XMLSchema#string">16:36</horarioEvento>
+  <resultadoFatal rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</resultadoFatal>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#evento_030">
+  <rdf:type rdf:resource="#EventoAtropelamento"/>
+  <envolveAnimal rdf:resource="#aveaquatica_002"/>
+  <ocorreEm rdf:resource="#trecho_BR471_km310"/>
+  <ocorreSob rdf:resource="#clima_chuva_fraca"/>
+  <ocorreDurante rdf:resource="#periodo_diurno"/>
+  <possuiFatorRisco rdf:resource="#risco_sem_passagem"/>
+  <dataEvento rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2022-08-05</dataEvento>
+  <horarioEvento rdf:datatype="http://www.w3.org/2001/XMLSchema#string">12:27</horarioEvento>
+  <resultadoFatal rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</resultadoFatal>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#evento_031">
+  <rdf:type rdf:resource="#EventoAtropelamento"/>
+  <envolveAnimal rdf:resource="#aveaquatica_004"/>
+  <ocorreEm rdf:resource="#trecho_BR471_km319"/>
+  <ocorreSob rdf:resource="#clima_ceu_aberto_dia"/>
+  <ocorreDurante rdf:resource="#periodo_crepuscular"/>
+  <possuiFatorRisco rdf:resource="#risco_sem_passagem"/>
+  <dataEvento rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2023-01-16</dataEvento>
+  <horarioEvento rdf:datatype="http://www.w3.org/2001/XMLSchema#string">06:45</horarioEvento>
+  <resultadoFatal rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</resultadoFatal>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#evento_032">
+  <rdf:type rdf:resource="#EventoAtropelamento"/>
+  <envolveAnimal rdf:resource="#serpente_004"/>
+  <ocorreEm rdf:resource="#trecho_BR471_km325"/>
+  <ocorreSob rdf:resource="#clima_neblina_leve"/>
+  <ocorreDurante rdf:resource="#periodo_noturno"/>
+  <possuiFatorRisco rdf:resource="#risco_visibilidade"/>
+  <dataEvento rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2023-08-11</dataEvento>
+  <horarioEvento rdf:datatype="http://www.w3.org/2001/XMLSchema#string">03:51</horarioEvento>
+  <resultadoFatal rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</resultadoFatal>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#evento_033">
+  <rdf:type rdf:resource="#EventoAtropelamento"/>
+  <envolveAnimal rdf:resource="#capivara_007"/>
+  <ocorreEm rdf:resource="#trecho_BR471_km298"/>
+  <ocorreSob rdf:resource="#clima_ceu_aberto_dia"/>
+  <ocorreDurante rdf:resource="#periodo_diurno"/>
+  <possuiFatorRisco rdf:resource="#risco_trafego_alto"/>
+  <dataEvento rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2023-05-15</dataEvento>
+  <horarioEvento rdf:datatype="http://www.w3.org/2001/XMLSchema#string">10:43</horarioEvento>
+  <resultadoFatal rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</resultadoFatal>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#evento_034">
+  <rdf:type rdf:resource="#EventoAtropelamento"/>
+  <envolveAnimal rdf:resource="#aveterrestre_001"/>
+  <ocorreEm rdf:resource="#trecho_BR471_km310"/>
+  <ocorreSob rdf:resource="#clima_chuva_fraca"/>
+  <ocorreDurante rdf:resource="#periodo_noturno"/>
+  <possuiFatorRisco rdf:resource="#risco_visibilidade"/>
+  <dataEvento rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2023-04-05</dataEvento>
+  <horarioEvento rdf:datatype="http://www.w3.org/2001/XMLSchema#string">23:44</horarioEvento>
+  <resultadoFatal rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</resultadoFatal>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#evento_035">
+  <rdf:type rdf:resource="#EventoAtropelamento"/>
+  <envolveAnimal rdf:resource="#tatu_001"/>
+  <ocorreEm rdf:resource="#trecho_BR471_km334"/>
+  <ocorreSob rdf:resource="#clima_chuva_fraca"/>
+  <ocorreDurante rdf:resource="#periodo_noturno"/>
+  <possuiFatorRisco rdf:resource="#risco_trafego_medio"/>
+  <dataEvento rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2023-11-29</dataEvento>
+  <horarioEvento rdf:datatype="http://www.w3.org/2001/XMLSchema#string">02:15</horarioEvento>
+  <resultadoFatal rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</resultadoFatal>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#evento_036">
+  <rdf:type rdf:resource="#EventoAtropelamento"/>
+  <envolveAnimal rdf:resource="#capivara_004"/>
+  <ocorreEm rdf:resource="#trecho_BR471_km337"/>
+  <ocorreSob rdf:resource="#clima_ceu_nublado"/>
+  <ocorreDurante rdf:resource="#periodo_noturno"/>
+  <possuiFatorRisco rdf:resource="#risco_prox_hidrico"/>
+  <dataEvento rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2020-02-26</dataEvento>
+  <horarioEvento rdf:datatype="http://www.w3.org/2001/XMLSchema#string">23:15</horarioEvento>
+  <resultadoFatal rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</resultadoFatal>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#evento_037">
+  <rdf:type rdf:resource="#EventoAtropelamento"/>
+  <envolveAnimal rdf:resource="#aveaquatica_001"/>
+  <ocorreEm rdf:resource="#trecho_BR471_km316"/>
+  <ocorreSob rdf:resource="#clima_ceu_aberto_dia"/>
+  <ocorreDurante rdf:resource="#periodo_noturno"/>
+  <possuiFatorRisco rdf:resource="#risco_sem_passagem"/>
+  <dataEvento rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2022-02-09</dataEvento>
+  <horarioEvento rdf:datatype="http://www.w3.org/2001/XMLSchema#string">21:08</horarioEvento>
+  <resultadoFatal rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</resultadoFatal>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#evento_038">
+  <rdf:type rdf:resource="#EventoAtropelamento"/>
+  <envolveAnimal rdf:resource="#aveaquatica_001"/>
+  <ocorreEm rdf:resource="#trecho_BR471_km322"/>
+  <ocorreSob rdf:resource="#clima_ceu_aberto_dia"/>
+  <ocorreDurante rdf:resource="#periodo_noturno"/>
+  <possuiFatorRisco rdf:resource="#risco_trafego_medio"/>
+  <dataEvento rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2023-03-29</dataEvento>
+  <horarioEvento rdf:datatype="http://www.w3.org/2001/XMLSchema#string">20:07</horarioEvento>
+  <resultadoFatal rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</resultadoFatal>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#evento_039">
+  <rdf:type rdf:resource="#EventoAtropelamento"/>
+  <envolveAnimal rdf:resource="#aveaquatica_005"/>
+  <ocorreEm rdf:resource="#trecho_BR471_km328"/>
+  <ocorreSob rdf:resource="#clima_chuva_fraca"/>
+  <ocorreDurante rdf:resource="#periodo_crepuscular"/>
+  <possuiFatorRisco rdf:resource="#risco_trafego_alto"/>
+  <dataEvento rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2021-07-18</dataEvento>
+  <horarioEvento rdf:datatype="http://www.w3.org/2001/XMLSchema#string">07:42</horarioEvento>
+  <resultadoFatal rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</resultadoFatal>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#evento_040">
+  <rdf:type rdf:resource="#EventoAtropelamento"/>
+  <envolveAnimal rdf:resource="#aveterrestre_003"/>
+  <ocorreEm rdf:resource="#trecho_BR471_km307"/>
+  <ocorreSob rdf:resource="#clima_ceu_aberto_dia"/>
+  <ocorreDurante rdf:resource="#periodo_crepuscular"/>
+  <possuiFatorRisco rdf:resource="#risco_prox_hidrico"/>
+  <dataEvento rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2022-02-28</dataEvento>
+  <horarioEvento rdf:datatype="http://www.w3.org/2001/XMLSchema#string">07:08</horarioEvento>
+  <resultadoFatal rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</resultadoFatal>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#evento_041">
+  <rdf:type rdf:resource="#EventoAtropelamento"/>
+  <envolveAnimal rdf:resource="#tartaruga_002"/>
+  <ocorreEm rdf:resource="#trecho_BR471_km313"/>
+  <ocorreSob rdf:resource="#clima_ceu_aberto_noc"/>
+  <ocorreDurante rdf:resource="#periodo_diurno"/>
+  <possuiFatorRisco rdf:resource="#risco_trafego_alto"/>
+  <dataEvento rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2023-04-11</dataEvento>
+  <horarioEvento rdf:datatype="http://www.w3.org/2001/XMLSchema#string">16:55</horarioEvento>
+  <resultadoFatal rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</resultadoFatal>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#evento_042">
+  <rdf:type rdf:resource="#EventoAtropelamento"/>
+  <envolveAnimal rdf:resource="#aveaquatica_001"/>
+  <ocorreEm rdf:resource="#trecho_BR471_km313"/>
+  <ocorreSob rdf:resource="#clima_ceu_aberto_dia"/>
+  <ocorreDurante rdf:resource="#periodo_noturno"/>
+  <possuiFatorRisco rdf:resource="#risco_trafego_alto"/>
+  <dataEvento rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2022-12-27</dataEvento>
+  <horarioEvento rdf:datatype="http://www.w3.org/2001/XMLSchema#string">20:16</horarioEvento>
+  <resultadoFatal rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</resultadoFatal>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#evento_043">
+  <rdf:type rdf:resource="#EventoAtropelamento"/>
+  <envolveAnimal rdf:resource="#aveaquatica_014"/>
+  <ocorreEm rdf:resource="#trecho_BR471_km301"/>
+  <ocorreSob rdf:resource="#clima_ceu_aberto_noc"/>
+  <ocorreDurante rdf:resource="#periodo_noturno"/>
+  <possuiFatorRisco rdf:resource="#risco_trafego_alto"/>
+  <dataEvento rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2023-08-26</dataEvento>
+  <horarioEvento rdf:datatype="http://www.w3.org/2001/XMLSchema#string">22:11</horarioEvento>
+  <resultadoFatal rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</resultadoFatal>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#evento_044">
+  <rdf:type rdf:resource="#EventoAtropelamento"/>
+  <envolveAnimal rdf:resource="#aveaquatica_015"/>
+  <ocorreEm rdf:resource="#trecho_BR471_km316"/>
+  <ocorreSob rdf:resource="#clima_neblina_densa"/>
+  <ocorreDurante rdf:resource="#periodo_diurno"/>
+  <possuiFatorRisco rdf:resource="#risco_sem_passagem"/>
+  <dataEvento rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2022-11-06</dataEvento>
+  <horarioEvento rdf:datatype="http://www.w3.org/2001/XMLSchema#string">08:45</horarioEvento>
+  <resultadoFatal rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</resultadoFatal>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#evento_045">
+  <rdf:type rdf:resource="#EventoAtropelamento"/>
+  <envolveAnimal rdf:resource="#aveaquatica_005"/>
+  <ocorreEm rdf:resource="#trecho_BR471_km295"/>
+  <ocorreSob rdf:resource="#clima_ceu_aberto_dia"/>
+  <ocorreDurante rdf:resource="#periodo_noturno"/>
+  <possuiFatorRisco rdf:resource="#risco_prox_hidrico"/>
+  <dataEvento rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2022-10-05</dataEvento>
+  <horarioEvento rdf:datatype="http://www.w3.org/2001/XMLSchema#string">21:09</horarioEvento>
+  <resultadoFatal rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</resultadoFatal>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#evento_046">
+  <rdf:type rdf:resource="#EventoAtropelamento"/>
+  <envolveAnimal rdf:resource="#aveaquatica_007"/>
+  <ocorreEm rdf:resource="#trecho_BR471_km304"/>
+  <ocorreSob rdf:resource="#clima_ceu_aberto_noc"/>
+  <ocorreDurante rdf:resource="#periodo_diurno"/>
+  <possuiFatorRisco rdf:resource="#risco_trafego_medio"/>
+  <dataEvento rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2020-07-29</dataEvento>
+  <horarioEvento rdf:datatype="http://www.w3.org/2001/XMLSchema#string">15:11</horarioEvento>
+  <resultadoFatal rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</resultadoFatal>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#evento_047">
+  <rdf:type rdf:resource="#EventoAtropelamento"/>
+  <envolveAnimal rdf:resource="#tartaruga_001"/>
+  <ocorreEm rdf:resource="#trecho_BR471_km316"/>
+  <ocorreSob rdf:resource="#clima_chuva_moderada"/>
+  <ocorreDurante rdf:resource="#periodo_noturno"/>
+  <possuiFatorRisco rdf:resource="#risco_trafego_medio"/>
+  <dataEvento rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2021-08-17</dataEvento>
+  <horarioEvento rdf:datatype="http://www.w3.org/2001/XMLSchema#string">02:00</horarioEvento>
+  <resultadoFatal rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</resultadoFatal>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#evento_048">
+  <rdf:type rdf:resource="#EventoAtropelamento"/>
+  <envolveAnimal rdf:resource="#aveterrestre_001"/>
+  <ocorreEm rdf:resource="#trecho_BR471_km331"/>
+  <ocorreSob rdf:resource="#clima_ceu_aberto_noc"/>
+  <ocorreDurante rdf:resource="#periodo_diurno"/>
+  <possuiFatorRisco rdf:resource="#risco_trafego_medio"/>
+  <dataEvento rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2021-10-03</dataEvento>
+  <horarioEvento rdf:datatype="http://www.w3.org/2001/XMLSchema#string">13:40</horarioEvento>
+  <resultadoFatal rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</resultadoFatal>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#evento_049">
+  <rdf:type rdf:resource="#EventoAtropelamento"/>
+  <envolveAnimal rdf:resource="#aveaquatica_009"/>
+  <ocorreEm rdf:resource="#trecho_BR471_km316"/>
+  <ocorreSob rdf:resource="#clima_chuva_moderada"/>
+  <ocorreDurante rdf:resource="#periodo_noturno"/>
+  <possuiFatorRisco rdf:resource="#risco_prox_hidrico"/>
+  <dataEvento rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2021-04-04</dataEvento>
+  <horarioEvento rdf:datatype="http://www.w3.org/2001/XMLSchema#string">21:33</horarioEvento>
+  <resultadoFatal rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</resultadoFatal>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#evento_050">
+  <rdf:type rdf:resource="#EventoAtropelamento"/>
+  <envolveAnimal rdf:resource="#aveaquatica_007"/>
+  <ocorreEm rdf:resource="#trecho_BR471_km295"/>
+  <ocorreSob rdf:resource="#clima_ceu_aberto_noc"/>
+  <ocorreDurante rdf:resource="#periodo_noturno"/>
+  <possuiFatorRisco rdf:resource="#risco_sem_passagem"/>
+  <dataEvento rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2022-02-04</dataEvento>
+  <horarioEvento rdf:datatype="http://www.w3.org/2001/XMLSchema#string">01:57</horarioEvento>
+  <resultadoFatal rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</resultadoFatal>
+</owl:NamedIndividual>
+
+
+</rdf:RDF>
