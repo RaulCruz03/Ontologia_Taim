@@ -1,16 +1,22 @@
 """
-30 Consultas SPARQL — Ontologia Banhado do Taim
-================================================
+30 Consultas SPARQL — Ontologia Banhado do Taim  (v3)
+======================================================
+Povoamento baseado em Nauderer (2014), FURG:
+  - 50 eventos reais de capivara (BR-471, km 536–553, Abr/2010–Mar/2013)
+  - 3 eventos reais de lontra + 3 de gato-do-mato (Setor 2)
+  - 90 eventos sintéticos plausíveis (14 espécies adicionais)
+  - 146 eventos no total | 301 indivíduos
+
 Categorias:
-  [S] Simples           — consultas por classe (6)
-  [M] Múltiplas relações — cruzamento de entidades (7)
-  [F] Com filtros        — restrições por valor (8)
-  [A] Agregação          — COUNT, GROUP BY (5)
-  [C] Cenário relevante  — análises do domínio (4)
+  [S] Simples            — consultas por classe         (6)
+  [M] Múltiplas relações — cruzamento de entidades      (7)
+  [F] Com filtros        — restrições por valor         (8)
+  [A] Agregação          — COUNT / AVG / GROUP BY       (5)
+  [C] Cenário relevante  — análises do domínio (v3)     (4)
 
 Execução:
   pip install rdflib
-  python sparql_consultas.py
+  python consultas_v3.py
 """
 
 from rdflib import Graph
@@ -47,12 +53,11 @@ def rodar(numero, categoria, descricao, sparql):
         resultados = list(g.query(PREFIXOS + sparql))
         if resultados:
             colunas = [str(v) for v in resultados[0].labels]
-            # Cabeçalho
-            print("  " + " | ".join(f"{c:<25}" for c in colunas))
-            print("  " + "-" * (28 * len(colunas)))
-            for linha in resultados[:10]:   # mostra até 10
+            print("  " + " | ".join(f"{c:<26}" for c in colunas))
+            print("  " + "-" * (29 * len(colunas)))
+            for linha in resultados[:10]:
                 valores = [nome(v) for v in linha]
-                print("  " + " | ".join(f"{v:<25}" for v in valores))
+                print("  " + " | ".join(f"{v:<26}" for v in valores))
             if len(resultados) > 10:
                 print(f"  ... e mais {len(resultados)-10} resultados")
             print(f"\n  → Total: {len(resultados)} resultado(s)")
@@ -77,12 +82,14 @@ WHERE {
 ORDER BY ?popular
 """)
 
-rodar(2, "S", "Liste todos os trechos da BR-471 com seus quilômetros","""
-SELECT ?trecho ?kmInicial ?kmFinal
+rodar(2, "S", "Liste todos os trechos da BR-471 com quilômetros e coordenadas","""
+SELECT ?trecho ?kmInicial ?kmFinal ?lat ?lon
 WHERE {
-  ?trecho rdf:type ex:TrechoRodovia .
-  ?trecho ex:kmInicial ?kmInicial .
-  ?trecho ex:kmFinal   ?kmFinal .
+  ?trecho rdf:type        ex:TrechoRodovia .
+  ?trecho ex:kmInicial    ?kmInicial .
+  ?trecho ex:kmFinal      ?kmFinal .
+  ?trecho ex:coordenadaLat ?lat .
+  ?trecho ex:coordenadaLon ?lon .
 }
 ORDER BY ?kmInicial
 """)
@@ -122,11 +129,12 @@ ORDER BY DESC(?nivel)
 """)
 
 rodar(6, "S", "Liste todos os eventos de atropelamento com data e horário","""
-SELECT ?evento ?data ?horario
+SELECT ?evento ?data ?horario ?fatal
 WHERE {
-  ?evento rdf:type ex:EventoAtropelamento .
-  ?evento ex:dataEvento    ?data .
-  ?evento ex:horarioEvento ?horario .
+  ?evento rdf:type          ex:EventoAtropelamento .
+  ?evento ex:dataEvento     ?data .
+  ?evento ex:horarioEvento  ?horario .
+  ?evento ex:resultadoFatal ?fatal .
 }
 ORDER BY ?data ?horario
 """)
@@ -139,11 +147,11 @@ ORDER BY ?data ?horario
 rodar(7, "M", "Animais envolvidos em eventos com o trecho onde ocorreram","""
 SELECT ?popular ?trecho ?data
 WHERE {
-  ?evento  rdf:type          ex:EventoAtropelamento .
-  ?evento  ex:envolveAnimal  ?animal .
-  ?evento  ex:ocorreEm       ?trecho .
-  ?evento  ex:dataEvento     ?data .
-  ?animal  ex:nomePopular    ?popular .
+  ?evento rdf:type         ex:EventoAtropelamento .
+  ?evento ex:envolveAnimal ?animal .
+  ?evento ex:ocorreEm      ?trecho .
+  ?evento ex:dataEvento    ?data .
+  ?animal ex:nomePopular   ?popular .
 }
 ORDER BY ?popular
 """)
@@ -151,84 +159,85 @@ ORDER BY ?popular
 rodar(8, "M", "Eventos com animal, trecho, clima e período do dia","""
 SELECT ?evento ?popular ?trecho ?clima ?periodo
 WHERE {
-  ?evento  rdf:type          ex:EventoAtropelamento .
-  ?evento  ex:envolveAnimal  ?animal .
-  ?evento  ex:ocorreEm       ?trecho .
-  ?evento  ex:ocorreSob      ?condicao .
-  ?evento  ex:ocorreDurante  ?periodo .
-  ?animal  ex:nomePopular    ?popular .
-  ?condicao ex:descricaoClima ?clima .
-}
-""")
-
-rodar(9, "M", "Trechos e os banhados próximos a eles","""
-SELECT ?trecho ?kmInicial ?habitat ?nomeHabitat
-WHERE {
-  ?trecho  rdf:type         ex:TrechoRodovia .
-  ?trecho  ex:kmInicial     ?kmInicial .
-  ?trecho  ex:proximoA      ?habitat .
-  ?habitat ex:nomeHabitat   ?nomeHabitat .
-}
-ORDER BY ?kmInicial
-""")
-
-rodar(10, "M", "Eventos fatais com o animal envolvido e o fator de risco","""
-SELECT ?popular ?especie ?fatorDesc ?trecho
-WHERE {
-  ?evento  rdf:type           ex:EventoAtropelamento .
-  ?evento  ex:envolveAnimal   ?animal .
-  ?evento  ex:ocorreEm        ?trecho .
-  ?evento  ex:possuiFatorRisco ?fator .
-  ?evento  ex:resultadoFatal  "true"^^xsd:boolean .
-  ?animal  ex:nomePopular     ?popular .
-  ?animal  ex:nomeEspecie     ?especie .
-  ?fator   ex:descricaoRisco  ?fatorDesc .
-}
-""")
-
-rodar(11, "M", "Capivaras atropeladas em trechos próximos a banhados","""
-SELECT ?evento ?trecho ?nomeHabitat ?data
-WHERE {
-  ?evento  rdf:type          ex:EventoAtropelamento .
-  ?evento  ex:envolveAnimal  ?animal .
-  ?evento  ex:ocorreEm       ?trecho .
-  ?evento  ex:dataEvento     ?data .
-  ?animal  rdf:type          ex:Capivara .
-  ?trecho  ex:proximoA       ?habitat .
-  ?habitat rdf:type          ex:Banhado .
-  ?habitat ex:nomeHabitat    ?nomeHabitat .
-}
-ORDER BY ?data
-""")
-
-rodar(12, "M", "Animais atropelados sob chuva com o trecho e horário","""
-SELECT ?popular ?trecho ?horario ?data
-WHERE {
   ?evento   rdf:type          ex:EventoAtropelamento .
   ?evento   ex:envolveAnimal  ?animal .
   ?evento   ex:ocorreEm       ?trecho .
   ?evento   ex:ocorreSob      ?condicao .
-  ?evento   ex:horarioEvento  ?horario .
-  ?evento   ex:dataEvento     ?data .
+  ?evento   ex:ocorreDurante  ?periodo .
   ?animal   ex:nomePopular    ?popular .
-  ?condicao rdf:type          ex:Chuva .
+  ?condicao ex:descricaoClima ?clima .
+}
+""")
+
+rodar(9, "M", "Trechos da BR-471 e os habitats adjacentes a cada um","""
+SELECT ?trecho ?kmInicial ?kmFinal ?nomeHabitat
+WHERE {
+  ?trecho  rdf:type       ex:TrechoRodovia .
+  ?trecho  ex:kmInicial   ?kmInicial .
+  ?trecho  ex:kmFinal     ?kmFinal .
+  ?trecho  ex:proximoA    ?habitat .
+  ?habitat ex:nomeHabitat ?nomeHabitat .
+}
+ORDER BY ?kmInicial
+""")
+
+rodar(10, "M", "Eventos fatais com o animal envolvido e o fator de risco associado","""
+SELECT ?popular ?especie ?fatorDesc ?trecho
+WHERE {
+  ?evento rdf:type            ex:EventoAtropelamento .
+  ?evento ex:envolveAnimal    ?animal .
+  ?evento ex:ocorreEm         ?trecho .
+  ?evento ex:possuiFatorRisco ?fator .
+  ?evento ex:resultadoFatal   "true"^^xsd:boolean .
+  ?animal ex:nomePopular      ?popular .
+  ?animal ex:nomeEspecie      ?especie .
+  ?fator  ex:descricaoRisco   ?fatorDesc .
+}
+""")
+
+rodar(11, "M", "Capivaras atropeladas em trechos próximos a banhados (dados reais Nauderer 2014)","""
+SELECT ?evento ?trecho ?nomeHabitat ?data
+WHERE {
+  ?evento  rdf:type         ex:EventoAtropelamento .
+  ?evento  ex:envolveAnimal ?animal .
+  ?evento  ex:ocorreEm      ?trecho .
+  ?evento  ex:dataEvento    ?data .
+  ?animal  rdf:type         ex:Capivara .
+  ?trecho  ex:proximoA      ?habitat .
+  ?habitat rdf:type         ex:Banhado .
+  ?habitat ex:nomeHabitat   ?nomeHabitat .
 }
 ORDER BY ?data
 """)
 
-rodar(13, "M", "Eventos com todas as relações: animal, trecho, clima, período e fator de risco","""
+rodar(12, "M", "Animais atropelados sob chuva com trecho e horário","""
+SELECT ?popular ?trecho ?horario ?data
+WHERE {
+  ?evento   rdf:type         ex:EventoAtropelamento .
+  ?evento   ex:envolveAnimal ?animal .
+  ?evento   ex:ocorreEm      ?trecho .
+  ?evento   ex:ocorreSob     ?condicao .
+  ?evento   ex:horarioEvento ?horario .
+  ?evento   ex:dataEvento    ?data .
+  ?animal   ex:nomePopular   ?popular .
+  ?condicao rdf:type         ex:Chuva .
+}
+ORDER BY ?data
+""")
+
+rodar(13, "M", "Eventos com todas as cinco relações simultâneas: animal, trecho, clima, período e fator de risco","""
 SELECT ?popular ?trecho ?clima ?periodo ?fator
 WHERE {
-  ?evento  rdf:type            ex:EventoAtropelamento .
-  ?evento  ex:envolveAnimal    ?animal .
-  ?evento  ex:ocorreEm         ?trecho .
-  ?evento  ex:ocorreSob        ?condicao .
-  ?evento  ex:ocorreDurante    ?per .
-  ?evento  ex:possuiFatorRisco ?fat .
-  ?animal  ex:nomePopular      ?popular .
-  ?condicao ex:descricaoClima  ?clima .
-  ?fat     ex:descricaoRisco   ?fator .
-  BIND(STRAFTER(STR(?per), \"#\") AS ?periodo)
+  ?evento   rdf:type            ex:EventoAtropelamento .
+  ?evento   ex:envolveAnimal    ?animal .
+  ?evento   ex:ocorreEm         ?trecho .
+  ?evento   ex:ocorreSob        ?condicao .
+  ?evento   ex:ocorreDurante    ?per .
+  ?evento   ex:possuiFatorRisco ?fat .
+  ?animal   ex:nomePopular      ?popular .
+  ?condicao ex:descricaoClima   ?clima .
+  ?fat      ex:descricaoRisco   ?fator .
+  BIND(STRAFTER(STR(?per), "#") AS ?periodo)
 }
 """)
 
@@ -237,14 +246,14 @@ WHERE {
 #  BLOCO 3 — COM FILTROS [F]
 # ════════════════════════════════════════════════════════════
 
-rodar(14, "F", "Eventos ocorridos no período noturno (horário entre 20h e 06h)","""
+rodar(14, "F", "Eventos ocorridos no período noturno (20h–05h59)","""
 SELECT ?evento ?popular ?horario ?data
 WHERE {
-  ?evento rdf:type          ex:EventoAtropelamento .
-  ?evento ex:envolveAnimal  ?animal .
-  ?evento ex:horarioEvento  ?horario .
-  ?evento ex:dataEvento     ?data .
-  ?animal ex:nomePopular    ?popular .
+  ?evento rdf:type         ex:EventoAtropelamento .
+  ?evento ex:envolveAnimal ?animal .
+  ?evento ex:horarioEvento ?horario .
+  ?evento ex:dataEvento    ?data .
+  ?animal ex:nomePopular   ?popular .
   FILTER (
     xsd:integer(SUBSTR(?horario, 1, 2)) >= 20 ||
     xsd:integer(SUBSTR(?horario, 1, 2)) <= 5
@@ -256,18 +265,18 @@ ORDER BY ?horario
 rodar(15, "F", "Eventos com chuva forte (pluviosidade acima de 50mm)","""
 SELECT ?evento ?popular ?pluviosidade ?data
 WHERE {
-  ?evento   rdf:type          ex:EventoAtropelamento .
-  ?evento   ex:envolveAnimal  ?animal .
-  ?evento   ex:ocorreSob      ?condicao .
-  ?evento   ex:dataEvento     ?data .
-  ?animal   ex:nomePopular    ?popular .
-  ?condicao ex:pluviosidade   ?pluviosidade .
+  ?evento   rdf:type         ex:EventoAtropelamento .
+  ?evento   ex:envolveAnimal ?animal .
+  ?evento   ex:ocorreSob     ?condicao .
+  ?evento   ex:dataEvento    ?data .
+  ?animal   ex:nomePopular   ?popular .
+  ?condicao ex:pluviosidade  ?pluviosidade .
   FILTER (?pluviosidade > 50)
 }
 ORDER BY DESC(?pluviosidade)
 """)
 
-rodar(16, "F", "Eventos fatais registrados após 2022","""
+rodar(16, "F", "Eventos fatais registrados nos meses de inverno (julho, agosto e setembro)","""
 SELECT ?evento ?popular ?data ?horario
 WHERE {
   ?evento rdf:type          ex:EventoAtropelamento .
@@ -276,80 +285,86 @@ WHERE {
   ?evento ex:dataEvento     ?data .
   ?evento ex:horarioEvento  ?horario .
   ?animal ex:nomePopular    ?popular .
-  FILTER (?data > "2022-01-01")
+  FILTER (
+    xsd:integer(SUBSTR(?data, 6, 2)) >= 7 &&
+    xsd:integer(SUBSTR(?data, 6, 2)) <= 9
+  )
 }
-ORDER BY DESC(?data)
+ORDER BY ?data
 """)
 
-rodar(17, "F", "Eventos em trechos entre os km 307 e km 325","""
+rodar(17, "F", "Eventos nos hotspots principais (km 537–542, Setores 1 e 2)","""
 SELECT ?evento ?popular ?kmInicial ?kmFinal ?data
 WHERE {
-  ?evento rdf:type          ex:EventoAtropelamento .
-  ?evento ex:envolveAnimal  ?animal .
-  ?evento ex:ocorreEm       ?trecho .
-  ?evento ex:dataEvento     ?data .
-  ?animal ex:nomePopular    ?popular .
-  ?trecho ex:kmInicial      ?kmInicial .
-  ?trecho ex:kmFinal        ?kmFinal .
-  FILTER (?kmInicial >= 307 && ?kmFinal <= 325)
+  ?evento rdf:type         ex:EventoAtropelamento .
+  ?evento ex:envolveAnimal ?animal .
+  ?evento ex:ocorreEm      ?trecho .
+  ?evento ex:dataEvento    ?data .
+  ?animal ex:nomePopular   ?popular .
+  ?trecho ex:kmInicial     ?kmInicial .
+  ?trecho ex:kmFinal       ?kmFinal .
+  FILTER (?kmInicial >= 537 && ?kmFinal <= 542)
 }
 ORDER BY ?kmInicial
 """)
 
-rodar(18, "F", "Eventos com temperatura abaixo de 15°C","""
+rodar(18, "F", "Eventos com temperatura abaixo de 15°C (condições de inverno)","""
 SELECT ?evento ?popular ?temperatura ?data
 WHERE {
-  ?evento   rdf:type          ex:EventoAtropelamento .
-  ?evento   ex:envolveAnimal  ?animal .
-  ?evento   ex:ocorreSob      ?condicao .
-  ?evento   ex:dataEvento     ?data .
-  ?animal   ex:nomePopular    ?popular .
-  ?condicao ex:temperatura    ?temperatura .
+  ?evento   rdf:type         ex:EventoAtropelamento .
+  ?evento   ex:envolveAnimal ?animal .
+  ?evento   ex:ocorreSob     ?condicao .
+  ?evento   ex:dataEvento    ?data .
+  ?animal   ex:nomePopular   ?popular .
+  ?condicao ex:temperatura   ?temperatura .
   FILTER (?temperatura < 15)
 }
 ORDER BY ?temperatura
 """)
 
-rodar(19, "F", "Animais com nome científico contendo 'Ardea' (garças)","""
-SELECT ?animal ?especie ?popular
+rodar(19, "F", "Animais do grupo Mamifero cadastrados na ontologia","""
+SELECT DISTINCT ?animal ?especie ?popular
 WHERE {
   ?animal rdf:type ?tipo .
-  ?tipo   rdfs:subClassOf* ex:Animal .
+  ?tipo   rdfs:subClassOf* ex:Mamifero .
   ?animal ex:nomeEspecie ?especie .
   ?animal ex:nomePopular ?popular .
-  FILTER (CONTAINS(LCASE(?especie), "ardea"))
 }
+ORDER BY ?popular
 """)
 
-rodar(20, "F", "Eventos ocorridos no período crepuscular (5h às 8h)","""
+rodar(20, "F", "Eventos ocorridos no período crepuscular (5h–7h59 e 17h–19h59)","""
 SELECT ?evento ?popular ?horario ?data
 WHERE {
-  ?evento rdf:type          ex:EventoAtropelamento .
-  ?evento ex:envolveAnimal  ?animal .
-  ?evento ex:horarioEvento  ?horario .
-  ?evento ex:dataEvento     ?data .
-  ?animal ex:nomePopular    ?popular .
+  ?evento rdf:type         ex:EventoAtropelamento .
+  ?evento ex:envolveAnimal ?animal .
+  ?evento ex:horarioEvento ?horario .
+  ?evento ex:dataEvento    ?data .
+  ?animal ex:nomePopular   ?popular .
   FILTER (
-    xsd:integer(SUBSTR(?horario, 1, 2)) >= 5 &&
-    xsd:integer(SUBSTR(?horario, 1, 2)) <= 8
+    (xsd:integer(SUBSTR(?horario, 1, 2)) >= 5  &&
+     xsd:integer(SUBSTR(?horario, 1, 2)) <= 7)
+    ||
+    (xsd:integer(SUBSTR(?horario, 1, 2)) >= 17 &&
+     xsd:integer(SUBSTR(?horario, 1, 2)) <= 19)
   )
 }
 ORDER BY ?horario
 """)
 
-rodar(21, "F", "Eventos envolvendo mamíferos em habitats com área maior que 5000 hectares","""
+rodar(21, "F", "Eventos envolvendo mamíferos em habitats com área acima de 5.000 hectares","""
 SELECT ?popular ?especie ?nomeHabitat ?area
 WHERE {
-  ?evento  rdf:type          ex:EventoAtropelamento .
-  ?evento  ex:envolveAnimal  ?animal .
-  ?evento  ex:ocorreEm       ?trecho .
-  ?animal  rdf:type          ?tipo .
-  ?tipo    rdfs:subClassOf*  ex:Mamifero .
-  ?animal  ex:nomePopular    ?popular .
-  ?animal  ex:nomeEspecie    ?especie .
-  ?trecho  ex:proximoA       ?habitat .
-  ?habitat ex:nomeHabitat    ?nomeHabitat .
-  ?habitat ex:areaHabitat    ?area .
+  ?evento  rdf:type         ex:EventoAtropelamento .
+  ?evento  ex:envolveAnimal ?animal .
+  ?evento  ex:ocorreEm      ?trecho .
+  ?animal  rdf:type         ?tipo .
+  ?tipo    rdfs:subClassOf* ex:Mamifero .
+  ?animal  ex:nomePopular   ?popular .
+  ?animal  ex:nomeEspecie   ?especie .
+  ?trecho  ex:proximoA      ?habitat .
+  ?habitat ex:nomeHabitat   ?nomeHabitat .
+  ?habitat ex:areaHabitat   ?area .
   FILTER (?area > 5000)
 }
 """)
@@ -359,12 +374,12 @@ WHERE {
 #  BLOCO 4 — AGREGAÇÃO [A]
 # ════════════════════════════════════════════════════════════
 
-rodar(22, "A", "Contagem de atropelamentos por nome popular da espécie","""
+rodar(22, "A", "Ranking de atropelamentos por espécie (todas)","""
 SELECT ?popular (COUNT(?evento) AS ?total)
 WHERE {
-  ?evento rdf:type          ex:EventoAtropelamento .
-  ?evento ex:envolveAnimal  ?animal .
-  ?animal ex:nomePopular    ?popular .
+  ?evento rdf:type         ex:EventoAtropelamento .
+  ?evento ex:envolveAnimal ?animal .
+  ?animal ex:nomePopular   ?popular .
 }
 GROUP BY ?popular
 ORDER BY DESC(?total)
@@ -381,12 +396,12 @@ GROUP BY ?trecho ?kmInicial
 ORDER BY DESC(?total)
 """)
 
-rodar(24, "A", "Contagem de eventos por condição climática","""
+rodar(24, "A", "Distribuição de eventos por condição climática","""
 SELECT ?descricao (COUNT(?evento) AS ?total)
 WHERE {
-  ?evento   rdf:type           ex:EventoAtropelamento .
-  ?evento   ex:ocorreSob       ?condicao .
-  ?condicao ex:descricaoClima  ?descricao .
+  ?evento   rdf:type          ex:EventoAtropelamento .
+  ?evento   ex:ocorreSob      ?condicao .
+  ?condicao ex:descricaoClima ?descricao .
 }
 GROUP BY ?descricao
 ORDER BY DESC(?total)
@@ -402,22 +417,26 @@ GROUP BY ?fatal
 ORDER BY DESC(?total)
 """)
 
-rodar(26, "A", "Média de temperatura nas condições climáticas dos eventos","""
-SELECT (AVG(?temperatura) AS ?tempMedia) (MIN(?temperatura) AS ?tempMin) (MAX(?temperatura) AS ?tempMax)
+rodar(26, "A", "Estatísticas de temperatura (média, mínima e máxima) nos eventos","""
+SELECT
+  (AVG(?t) AS ?tempMedia)
+  (MIN(?t) AS ?tempMin)
+  (MAX(?t) AS ?tempMax)
 WHERE {
-  ?evento   rdf:type        ex:EventoAtropelamento .
-  ?evento   ex:ocorreSob    ?condicao .
-  ?condicao ex:temperatura  ?temperatura .
+  ?evento   rdf:type       ex:EventoAtropelamento .
+  ?evento   ex:ocorreSob   ?condicao .
+  ?condicao ex:temperatura ?t .
 }
 """)
 
 
 # ════════════════════════════════════════════════════════════
-#  BLOCO 5 — CENÁRIOS RELEVANTES [C]
+#  BLOCO 5 — CENÁRIOS RELEVANTES [C]  (atualizados para v3)
 # ════════════════════════════════════════════════════════════
 
-rodar(27, "C", "CENÁRIO — Trechos de maior risco: próximos a banhado com fator de risco nível 4 ou 5","""
-SELECT ?trecho ?kmInicial ?nomeHabitat ?fatorDesc ?nivel
+rodar(27, "C",
+      "CENÁRIO — Trechos sem SPF (Setor 2) com fator de risco nível 4–5 próximos a banhado","""
+SELECT DISTINCT ?trecho ?kmInicial ?nomeHabitat ?fatorDesc ?nivel
 WHERE {
   ?evento  rdf:type            ex:EventoAtropelamento .
   ?evento  ex:ocorreEm         ?trecho .
@@ -433,7 +452,8 @@ WHERE {
 ORDER BY DESC(?nivel) ?kmInicial
 """)
 
-rodar(28, "C", "CENÁRIO — Espécies mais vulneráveis: ranking por número de atropelamentos fatais","""
+rodar(28, "C",
+      "CENÁRIO — Ranking de espécies por atropelamentos fatais (reais e sintéticos)","""
 SELECT ?popular ?especie (COUNT(?evento) AS ?atropelamentosFatais)
 WHERE {
   ?evento rdf:type          ex:EventoAtropelamento .
@@ -446,48 +466,46 @@ GROUP BY ?popular ?especie
 ORDER BY DESC(?atropelamentosFatais)
 """)
 
-rodar(29, "C", "CENÁRIO — Correlação chuva e atropelamento de mamíferos à noite","""
-SELECT ?popular ?pluviosidade ?horario ?nomeHabitat ?data
+rodar(29, "C",
+      "CENÁRIO — Gato-do-mato e lontra: perfil de atropelamento no Setor 2 (dados reais)","""
+SELECT ?popular ?especie ?data ?horario ?kmInicial ?fatorDesc
 WHERE {
-  ?evento   rdf:type          ex:EventoAtropelamento .
-  ?evento   ex:envolveAnimal  ?animal .
-  ?evento   ex:ocorreSob      ?condicao .
-  ?evento   ex:ocorreEm       ?trecho .
-  ?evento   ex:horarioEvento  ?horario .
-  ?evento   ex:dataEvento     ?data .
-  ?animal   rdf:type          ?tipo .
-  ?tipo     rdfs:subClassOf*  ex:Mamifero .
-  ?animal   ex:nomePopular    ?popular .
-  ?condicao rdf:type          ex:Chuva .
-  ?condicao ex:pluviosidade   ?pluviosidade .
-  ?trecho   ex:proximoA       ?habitat .
-  ?habitat  ex:nomeHabitat    ?nomeHabitat .
+  ?evento rdf:type            ex:EventoAtropelamento .
+  ?evento ex:envolveAnimal    ?animal .
+  ?evento ex:ocorreEm         ?trecho .
+  ?evento ex:possuiFatorRisco ?fator .
+  ?evento ex:dataEvento       ?data .
+  ?evento ex:horarioEvento    ?horario .
+  ?animal ex:nomePopular      ?popular .
+  ?animal ex:nomeEspecie      ?especie .
+  ?trecho ex:kmInicial        ?kmInicial .
+  ?fator  ex:descricaoRisco   ?fatorDesc .
   FILTER (
-    xsd:integer(SUBSTR(?horario, 1, 2)) >= 20 ||
-    xsd:integer(SUBSTR(?horario, 1, 2)) <= 5
+    CONTAINS(LCASE(STR(?especie)), "lontra") ||
+    CONTAINS(LCASE(STR(?especie)), "leopardus")
   )
 }
-ORDER BY DESC(?pluviosidade)
+ORDER BY ?data
 """)
 
-rodar(30, "C", "CENÁRIO — Diagnóstico completo: trecho, espécie, clima, período e fatalidade para apoio à decisão","""
-SELECT ?kmInicial ?popular ?clima ?periodo ?fatal (COUNT(?evento) AS ?ocorrencias)
+rodar(30, "C",
+      "CENÁRIO — Diagnóstico por período do dia: distribuição noturno/crepuscular/diurno por grupo faunístico","""
+SELECT ?grupo ?periodo (COUNT(?evento) AS ?total)
 WHERE {
-  ?evento   rdf:type            ex:EventoAtropelamento .
-  ?evento   ex:envolveAnimal    ?animal .
-  ?evento   ex:ocorreEm         ?trecho .
-  ?evento   ex:ocorreSob        ?condicao .
-  ?evento   ex:ocorreDurante    ?per .
-  ?evento   ex:resultadoFatal   ?fatal .
-  ?animal   ex:nomePopular      ?popular .
-  ?trecho   ex:kmInicial        ?kmInicial .
-  ?condicao ex:descricaoClima   ?clima .
-  BIND(STRAFTER(STR(?per), \"#\") AS ?periodo)
+  ?evento rdf:type         ex:EventoAtropelamento .
+  ?evento ex:envolveAnimal ?animal .
+  ?evento ex:ocorreDurante ?per .
+  ?animal rdf:type         ?tipo .
+  ?tipo   rdfs:subClassOf* ?grupoClass .
+  FILTER (?grupoClass IN (ex:Mamifero, ex:Ave, ex:Reptil))
+  BIND(STRAFTER(STR(?tipo),    "#") AS ?espCls)
+  BIND(STRAFTER(STR(?grupoClass), "#") AS ?grupo)
+  BIND(STRAFTER(STR(?per),     "#") AS ?periodo)
 }
-GROUP BY ?kmInicial ?popular ?clima ?periodo ?fatal
-ORDER BY DESC(?ocorrencias) ?kmInicial
+GROUP BY ?grupo ?periodo
+ORDER BY ?grupo DESC(?total)
 """)
 
 print(f"\n{'═'*60}")
-print("  ✅ 30 consultas executadas com sucesso.")
+print("  ✅ 30 consultas executadas.")
 print(f"{'═'*60}\n")
